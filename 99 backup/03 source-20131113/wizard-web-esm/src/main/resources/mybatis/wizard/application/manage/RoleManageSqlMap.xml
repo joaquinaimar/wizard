@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.framework.manage.member.roleManage">
+	<select id="searchRoleInfo"
+		parameterType="com.wizard.web.application.manage.member.bean.RoleInfo"
+		resultType="com.wizard.web.application.manage.member.bean.RoleInfo">
+		SELECT
+		role.PK_ID pkId
+		, role.ROLE_NAME roleName
+		, role.ROLE_DETAIL
+		roleDetail
+		, role.FK_ORG_ID fkOrgId
+		,
+		org.ORG_NAME
+		orgName
+		FROM
+		wizard_role_info role
+		INNER JOIN
+		wizard_org_info org ON org.PK_ID =
+		role.FK_ORG_ID
+		WHERE 1 = 1
+		<if test="roleName!=null and roleName!=''">
+			AND role.ROLE_NAME = #{roleName}
+		</if>
+		<if test="fkOrgId!=null and fkOrgId!=''">
+			AND role.FK_ORG_ID = #{fkOrgId}
+		</if>
+	</select>
+	<select id="getRoleInfoList" resultType="WizardRoleInfo">
+		SELECT
+		PK_ID pkId
+		,
+		ROLE_NAME roleName
+		FROM
+		wizard_role_info
+	</select>
+	<select id="getMaxPkId" resultType="int">
+		SELECT
+		MAX(CAST(PK_ID as
+		decimal))
+		FROM wizard_role_info
+	</select>
+	<insert id="insertRoleInfo" parameterType="WizardRoleInfo">
+		INSERT INTO
+		wizard_role_info
+		(PK_ID, ROLE_NAME, ROLE_DETAIL, FK_ORG_ID)
+		VALUES
+		(#{pkId}, #{roleName}, #{roleDetail}, #{fkOrgId})
+	</insert>
+	<update id="updateRoleInfo" parameterType="WizardRoleInfo">
+		UPDATE
+		wizard_role_info
+		SET ROLE_NAME = #{roleName}
+		, ROLE_DETAIL =
+		#{roleDetail}
+		, FK_ORG_ID = #{fkOrgId}
+		WHERE PK_ID = #{pkId}
+	</update>
+	<delete id="deleteRoleInfo" parameterType="Collection">
+		DELETE role, user
+		FROM wizard_role_info role
+		LEFT JOIN wizard_user_info
+		user ON role.PK_ID = user.FK_ROLE_ID
+		WHERE role.PK_ID in
+		<foreach item="pkId" index="index" collection="records" open="("
+			separator="," close=")">
+			#{pkId}
+		</foreach>
+	</delete>
+</mapper>

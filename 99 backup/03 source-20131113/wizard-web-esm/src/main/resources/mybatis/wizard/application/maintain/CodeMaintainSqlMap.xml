@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.framework.maintain.code">
+	<select id="searchType" resultType="com.wizard.web.application.maintain.code.bean.Code">
+		SELECT
+		PK_ID pkId
+		, PK_ID newId
+		, TYPE_ID typeId
+		, CONTENT "content"
+		FROM
+		wizard_code
+		WHERE TYPE_ID =
+		'0'
+		ORDER BY PK_ID ASC
+	</select>
+	<select id="searchCode" parameterType="String" resultType="com.wizard.web.application.maintain.code.bean.Code">
+		SELECT
+		code.PK_ID pkId
+		, code.PK_ID newId
+		, code.TYPE_ID typeId
+		, type_code.CONTENT "type"
+		, code.CONTENT "content"
+		FROM wizard_code code
+		INNER JOIN wizard_code type_code
+		ON code.TYPE_ID =
+		type_code.PK_ID
+		WHERE code.TYPE_ID = #{typeId}
+		ORDER BY code.TYPE_ID ASC, code.PK_ID ASC
+	</select>
+	<select id="downCode" resultType="com.wizard.web.application.maintain.code.bean.Code">
+		SELECT
+		code.PK_ID pkId
+		, code.TYPE_ID typeId
+		, type_code.CONTENT "type"
+		, code.CONTENT "content"
+		FROM wizard_code code
+		LEFT JOIN wizard_code type_code
+		ON code.TYPE_ID = type_code.PK_ID
+		ORDER BY code.TYPE_ID ASC,
+		code.PK_ID ASC
+	</select>
+	<update id="updateCode" parameterType="com.wizard.web.application.maintain.code.bean.Code">
+		UPDATE wizard_code
+		SET PK_ID = #{newId}
+		<if test="typeId!=null and typeId!=''">
+			, TYPE_ID = #{typeId}
+		</if>
+		, CONTENT = #{content}
+		WHERE PK_ID = #{pkId}
+	</update>
+	<update id="batchUpdateCode" parameterType="com.wizard.web.application.maintain.code.bean.Code">
+		UPDATE wizard_code
+		SET
+		TYPE_ID = #{newId}
+		WHERE
+		TYPE_ID = #{pkId}
+	</update>
+	<delete id="deleteCode" parameterType="Collection">
+		DELETE FROM
+		wizard_code
+		WHERE PK_ID in
+		<foreach item="pkId" index="index" collection="records" open="(" separator="," close=")">
+			#{pkId}
+		</foreach>
+	</delete>
+	<delete id="deleteCodeContent" parameterType="Collection">
+		DELETE FROM
+		wizard_code
+		WHERE TYPE_ID in
+		<foreach item="typeId" index="index" collection="records" open="(" separator="," close=")">
+			#{typeId}
+		</foreach>
+	</delete>
+	<delete id="clearCode">
+		DELETE FROM wizard_code
+	</delete>
+	<insert id="insertCode" parameterType="WizardCode">
+		INSERT INTO wizard_code ( PK_ID, TYPE_ID, CONTENT )
+		VALUES
+		( #{pkId},
+		#{typeId}, #{content})
+	</insert>
+</mapper>

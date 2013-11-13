@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.framework.system.main">
+	<select id="getParentNodes"
+		parameterType="com.wizard.web.application.system.main.bean.AuthorityMenu"
+		resultType="WizardMenu">
+		SELECT
+		PK_ID
+		pkId, P_PK_ID pPkId, MENU_NAME menuName,
+		MENU_PATH menuPath
+		FROM WIZARD_MENU
+		WHERE (PK_ID IN (
+		SELECT DISTINCT
+		menu.P_PK_ID pPkId
+		FROM WIZARD_MENU menu
+		INNER JOIN wizard_authority authority ON
+		authority.FK_MENU_ID = menu.PK_ID
+		INNER JOIN wizard_role_info role ON
+		role.PK_ID = authority.FK_ROLE_ID
+		WHERE P_PK_ID <![CDATA[ <> ]]>
+		'0'
+		AND role.ROLE_NAME = #{roleName} AND DISPLAY = '1'
+		) OR PK_ID = '00' ) AND
+		DISPLAY = '1'
+		ORDER BY PK_ID
+	</select>
+	<select id="getChildNodes"
+		parameterType="com.wizard.web.application.system.main.bean.AuthorityMenu"
+		resultType="WizardMenu">
+		SELECT
+		menu.PK_ID pkId
+		, menu.P_PK_ID pPkId
+		, menu.MENU_NAME
+		menuName
+		, menu.MENU_PATH menuPath
+		FROM WIZARD_MENU menu
+		INNER JOIN
+		wizard_authority authority ON authority.FK_MENU_ID = menu.PK_ID
+		INNER
+		JOIN wizard_role_info role ON role.PK_ID = authority.FK_ROLE_ID
+		WHERE
+		P_PK_ID = #{pid} AND role.ROLE_NAME = #{roleName} AND DISPLAY =
+		'1'
+		ORDER BY menu.PK_ID
+	</select>
+</mapper>

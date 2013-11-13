@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.core.security">
+	<select id="authenticationQuery" parameterType="WizardUserInfo"
+		resultType="WizardUserInfo">
+		SELECT PK_ID pkId, USER_NAME userName, PASSWORD "password",
+		FK_ROLE_ID fkRoleId
+		FROM wizard_user_info WHERE USER_NAME = #{userName} AND
+		PASSWORD = #{password}
+	</select>
+	<select id="userRolesQuery" parameterType="String" resultType="String">
+		SELECT
+		role.ROLE_NAME roleName
+		FROM wizard_role_info role
+		inner join wizard_user_info
+		user on
+		role.pk_id = user.fk_role_id
+		WHERE user.USER_NAME = #{name}
+	</select>
+	<select id="permissionsQuery" parameterType="String" resultType="String">
+		SELECT
+		org.ORG_NAME orgName
+		FROM wizard_org_info org
+		inner join wizard_role_info role
+		on
+		org.pk_id = role.fk_org_id
+		WHERE role.role_name = #{name}
+	</select>
+</mapper>

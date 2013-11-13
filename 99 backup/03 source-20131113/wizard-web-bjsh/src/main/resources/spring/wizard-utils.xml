@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	   http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+	<aop:config proxy-target-class="true">
+		<aop:aspect id="Aspect" ref="wizardLogger">
+			<aop:pointcut id="framework" expression="execution(* com.wizard.web..*Service*.*(..))" />
+			<aop:around pointcut-ref="framework" method="aroundLog" />
+		</aop:aspect>
+	</aop:config>
+	<bean id="wizardLogger" class="com.wizard.web.basic.log.WizardLogger" />
+
+	<bean id="springContextUtils" class="com.wizard.web.utils.SpringContextUtils" />
+
+	<context:component-scan base-package="com.wizard.web.application" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+</beans>

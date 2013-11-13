@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.framework.manage.member.userManage">
+	<select id="getUserInfo" parameterType="String" resultType="WizardUserInfo">
+		SELECT PK_ID
+		pkId, USER_NAME userName, PASSWORD
+		"password",
+		FK_ROLE_ID
+		fkRoleId
+		FROM
+		wizard_user_info WHERE user_name = #{userName}
+	</select>
+	<update id="modifyPassword" parameterType="com.wizard.web.application.manage.member.bean.UserInfo">
+		UPDATE WIZARD_USER_INFO
+		SET
+		PASSWORD = #{newPassword}
+		WHERE PK_ID =
+		#{pkId} AND PASSWORD = #{password}
+	</update>
+	<select id="searchUserInfo" parameterType="com.wizard.web.application.manage.member.bean.UserInfo" resultType="com.wizard.web.application.manage.member.bean.UserInfo">
+		SELECT
+		user.PK_ID pkId
+		, user.USER_NAME userName
+		, user.USER_DETAIL
+		userDetail
+		,
+		user.FK_ROLE_ID fkRoleId
+		, role.ROLE_NAME
+		roleName
+		FROM
+		wizard_user_info user
+		INNER JOIN
+		wizard_role_info role ON role.PK_ID =
+		user.FK_ROLE_ID
+		WHERE 1 = 1
+		<if test="userName!=null and userName!=''">
+			AND user.USER_NAME = #{userName}
+		</if>
+		<if test="fkRoleId!=null and fkRoleId!=''">
+			AND user.FK_ROLE_ID = #{fkRoleId}
+		</if>
+	</select>
+	<select id="getMaxPkId" resultType="int">
+		SELECT
+		MAX(CAST(PK_ID as decimal))
+		FROM wizard_user_info
+	</select>
+	<insert id="insertUserInfo" parameterType="WizardRoleInfo">
+		INSERT INTO wizard_user_info
+		(PK_ID, USER_NAME, PASSWORD, USER_DETAIL,
+		FK_ROLE_ID)
+		VALUES
+		(#{pkId}, #{userName}, #{password}, #{userDetail}, #{fkRoleId})
+	</insert>
+	<update id="updateUserInfo" parameterType="WizardRoleInfo">
+		UPDATE wizard_user_info
+		SET USER_NAME = #{userName}
+		, USER_DETAIL =
+		#{userDetail}
+		, FK_ROLE_ID = #{fkRoleId}
+		WHERE PK_ID = #{pkId}
+	</update>
+	<delete id="deleteUserInfo" parameterType="Collection">
+		DELETE FROM
+		wizard_user_info
+		WHERE PK_ID in
+		<foreach item="pkId" index="index" collection="records" open="(" separator="," close=")">
+			#{pkId}
+		</foreach>
+	</delete>
+</mapper>

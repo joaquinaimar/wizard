@@ -1,0 +1,48 @@
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #888888;
+	overflow: hidden;
+	background: url(../../image/system/merry01.jpg) no-repeat fixed center;
+}
+
+.form-signin {
+	max-width: 300px;
+	padding: 19px 29px 29px;
+	margin: 50px auto 0;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	border-radius: 5px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-signin {
+	margin-bottom: 10px;
+}
+
+.form-signin-heading {
+	margin-bottom: 10px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.form-signin input[type="text"],.form-signin input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: 15px;
+	padding: 7px 9px;
+}
+
+.login-title {
+	height: 100px;
+}
+
+.login-center {
+	height: 350px;
+}
+
+.login-login {
+	filter: alpha(opacity =   85);
+	opacity: 0.85;
+	-moz-opacity: 0.85;
+}

@@ -1,0 +1,50 @@
+.wizard-bg {
+	min-height: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.wizard-dialog-win {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	height: 150px;
+	border: 4px solid #FF0000;
+	margin: -102px 0 0 -202px;
+}
+
+.wizard-dialog-content {
+	margin-top: 30px;
+	margin-left: 50px;
+}
+
+.wizard-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.3;
+	filter: alpha(opacity =                 30);
+}
+
+.wizard-loading {
+	border: solid 2px #86A5AD;
+	background: white url(../image/progressBar_m.gif) no-repeat 10px 10px;
+	width: 148px;
+	height: 28px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -74px;
+	margin-top: -14px;
+	padding: 10px 10px 10px 50px;
+	text-align: left;
+	line-height: 27px;
+	font-weight: bold;
+	position: absolute;
+}

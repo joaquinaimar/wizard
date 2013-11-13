@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.framework.maintain.log">
+	<select id="pageSearchLog" parameterType="com.wizard.web.application.maintain.log.bean.LogInfo"
+		resultType="com.wizard.web.application.maintain.log.bean.LogInfo">
+		SELECT log.PK_ID pkId
+		, log.LOG_LEVEL logLevel
+		, log.LOG_TITLE logTitle
+		, log.LOG_DETAIL logDetail
+		, log.LOG_TIME logTime
+		, log.USER_NAME userName
+		, code.CONTENT AS logLevelValue
+		FROM wizard_log_info log
+		LEFT JOIN
+		wizard_code code ON
+		log.LOG_LEVEL = code.PK_ID
+		WHERE 1=1
+		<if test="logTitle!=null and logTitle!=''">
+			AND log.LOG_TITLE LIKE '%${logTitle}%'
+		</if>
+		<if test="userName!=null and userName!=''">
+			AND log.USER_NAME = #{userName}
+		</if>
+		<if test="logLevel!=null and logLevel!=''">
+			AND log.LOG_LEVEL = #{logLevel}
+		</if>
+		<if test="logTimeStart!=null and logTimeStart!=''">
+			<![CDATA[ AND log.LOG_TIME > #{logTimeStart} ]]>
+		</if>
+		<if test="logTimeEnd!=null and logTimeEnd!=''">
+			<![CDATA[ AND log.LOG_TIME <= #{logTimeEnd} ]]>
+		</if>
+		ORDER BY CAST(log.PK_ID as decimal) DESC
+	</select>
+
+	<delete id="clearLog">
+		DELETE FROM wizard_log_info
+	</delete>
+</mapper>

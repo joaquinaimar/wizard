@@ -1,0 +1,16 @@
+<%@ page import="com.wizard.web.utils.WizardWebUtils"%>
+
+<link rel="Shortcut Icon" href="<%=application.getContextPath()%>/wizard/image/wizard-small.ico"/>
+
+<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/extjs/resources/css/ext-all.css"/>
+<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/lib/style/wizard.css"/>
+
+<script type="text/javascript" src="<%=application.getContextPath()%>/extjs/ext-all.js"></script>
+<script type="text/javascript" src="<%=application.getContextPath()%>/extjs/locale/ext-lang-zh_CN.js"></script>
+<script type="text/javascript" src="<%=application.getContextPath()%>/lib/script/wizard-extjs-ex.js"></script>
+<script type="text/javascript" src="<%=application.getContextPath()%>/lib/script/wizard-common.js"></script>
+<script type="text/javascript">
+    var contextPath = '<%=application.getContextPath() %>';
+    Ext.BLANK_IMAGE_URL = contextPath + '/extjs/resources/themes/images/default/tree/s.gif';
+    var loginName = '<%=WizardWebUtils.getUserName(session) %>';
+</script>

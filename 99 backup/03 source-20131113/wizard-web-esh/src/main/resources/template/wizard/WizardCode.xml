@@ -1,0 +1,6 @@
+<template id="WizardCode" name="代码表">
+	<column field="pkId" type="java.lang.String" name="PK" index="0" />
+	<column field="typeId" type="java.lang.String" name="类型" index="1" />
+	<column field="type" type="java.lang.String" name="类型内容" index="2" />
+	<column field="content" type="java.lang.String" name="内容" index="3" />
+</template>

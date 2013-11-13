@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.framework.manage.menuManage">
+	<select id="getFirstPage" resultType="String">
+		SELECT
+		MENU_PATH menuPath
+		FROM wizard_menu
+		WHERE
+		PK_ID = '00' AND P_PK_ID = '0'
+	</select>
+	<update id="updateFirstPage" parameterType="String">
+		UPDATE wizard_menu
+		SET
+		MENU_PATH = #{menuPath}
+		WHERE
+		PK_ID = '00' AND
+		P_PK_ID = '0'
+	</update>
+	<select id="getParentMenu" resultType="com.wizard.web.application.manage.menu.bean.Menu">
+		SELECT
+		PK_ID pkId, PK_ID newId, P_PK_ID
+		pPkId, MENU_NAME menuName, MENU_PATH
+		menuPath, DISPLAY display
+		FROM wizard_menu
+		WHERE
+		P_PK_ID = '0' AND (MENU_PATH is null OR MENU_PATH = '')
+	</select>
+	<update id="updateMenu" parameterType="com.wizard.web.application.manage.menu.bean.Menu">
+		UPDATE wizard_menu
+		SET
+		PK_ID = #{newId}
+		, MENU_NAME = #{menuName}
+		<if test="menuPath!=null and menuPath!=''">
+			,
+			MENU_PATH =
+			#{menuPath}
+		</if>
+		, DISPLAY = #{display}
+		WHERE PK_ID =
+		#{pkId}
+	</update>
+	<update id="batchUpdateMenu" parameterType="com.wizard.web.application.manage.menu.bean.Menu">
+		UPDATE wizard_menu
+		SET
+		P_PK_ID = #{newId}
+		WHERE
+		P_PK_ID = #{pkId}
+	</update>
+	<select id="getChildMenu" parameterType="String" resultType="com.wizard.web.application.manage.menu.bean.Menu">
+		SELECT
+		PK_ID pkId, PK_ID newId, P_PK_ID
+		pPkId,
+		MENU_NAME menuName, MENU_PATH menuPath, DISPLAY display
+		from wizard_menu
+		WHERE
+		P_PK_ID = #{pPkId}
+	</select>
+	<insert id="insertMenu" parameterType="WizardMenu">
+		INSERT INTO wizard_menu (
+		PK_ID, P_PK_ID, MENU_NAME, MENU_PATH, DISPLAY )
+		VALUES
+		(
+		#{pkId}, #{pPkId},
+		#{menuName}, #{menuPath}, #{display} )
+	</insert>
+	<delete id="deleteMenu" parameterType="Collection">
+		DELETE FROM
+		wizard_menu
+		WHERE PK_ID in
+		<foreach item="pkId" index="index" collection="records" open="(" separator="," close=")">
+			#{pkId}
+		</foreach>
+	</delete>
+	<delete id="deleteChildMenu" parameterType="Collection">
+		DELETE FROM
+		wizard_menu
+		WHERE P_PK_ID in
+		<foreach item="pPkId" index="index" collection="records" open="(" separator="," close=")">
+			#{pPkId}
+		</foreach>
+	</delete>
+</mapper>

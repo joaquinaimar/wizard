@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.framework.common">
+	<select id="getCodeList" parameterType="String" resultType="WizardCode">
+		SELECT
+		PK_ID pkId, TYPE_ID typeId, CONTENT "content"
+		FROM wizard_code
+		WHERE TYPE_ID = #{typeId}
+		ORDER BY PK_ID ASC
+	</select>
+</mapper>

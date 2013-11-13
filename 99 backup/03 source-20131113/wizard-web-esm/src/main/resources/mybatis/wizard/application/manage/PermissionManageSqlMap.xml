@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wizard.web.framework.manage.permissionManage">
+	<select id="searchMenu"
+		resultType="com.wizard.web.application.manage.permission.bean.Menu">
+		SELECT c.PK_ID
+		pkId,c.MENU_NAME menuName, p.MENU_NAME
+		parentMenuName
+		FROM wizard_menu
+		c
+		INNER JOIN wizard_menu p ON p.PK_ID =
+		c.P_PK_ID
+		WHERE c.DISPLAY = '1'
+		AND p.DISPLAY = '1'
+	</select>
+
+	<select id="getAuthority" resultType="WizardAuthority">
+		SELECT
+		FK_ROLE_ID fkRoleId
+		,
+		FK_MENU_ID fkMenuId
+		FROM wizard_authority ORDER BY
+		FK_ROLE_ID ASC
+	</select>
+
+	<select id="clearAuthority">
+		DELETE FROM wizard_authority
+	</select>
+
+	<insert id="insertAuthority" parameterType="WizardAuthority">
+		INSERT INTO
+		wizard_authority (PK_ID, FK_ROLE_ID, FK_MENU_ID) VALUES
+		(#{pkId},
+		#{fkRoleId}, #{fkMenuId})
+	</insert>
+
+</mapper>

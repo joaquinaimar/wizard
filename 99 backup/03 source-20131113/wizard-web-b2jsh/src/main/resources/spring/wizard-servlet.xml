@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 自动扫描所有注解该路径 -->
+	<context:component-scan base-package="com.wizard.web.application" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<context:component-scan base-package="project" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 设置文件夹映射 -->
+	<mvc:resources mapping="/lib/**" location="/lib/" />
+	<mvc:resources mapping="/page/**" location="/page/" />
+	<mvc:resources mapping="/jquery/**" location="classpath:/META-INF/resources/webjars/jquery/1.8.3/" />
+	<mvc:resources mapping="/jquery-ui/**" location="classpath:/META-INF/resources/webjars/jquery-ui/1.9.1/" />
+	<mvc:resources mapping="/jquery-form/**" location="classpath:/META-INF/resources/webjars/jquery-form/3.28.0-2013.02.06/" />
+	<mvc:resources mapping="/bootstrap/**" location="classpath:/META-INF/resources/webjars/bootstrap/2.2.2/" />
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+
+	<bean id="handlerAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+				<property name="conversionService" ref="conversionService" />
+			</bean>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.FormHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 框架 -->
+	<mvc:view-controller path="/" view-name="wizard/system/login" />
+	<mvc:view-controller path="/main" view-name="wizard/system/main" />
+	<mvc:view-controller path="/wizard/system/menu" />
+	<mvc:view-controller path="/wizard/system/welcome" />
+
+	<mvc:view-controller path="/wizard/manage/modifyPwd" />
+	<mvc:view-controller path="/wizard/manage/memberManage" />
+	<mvc:view-controller path="/wizard/manage/menuManage" />
+	<mvc:view-controller path="/wizard/manage/permissionManage" />
+
+	<mvc:view-controller path="/wizard/maintain/codeMaintain" />
+	<mvc:view-controller path="/wizard/maintain/logMaintain" />
+
+	<!-- 小程序 -->
+	<mvc:view-controller path="/wizard-applet/canvas" />
+
+	<!-- 项目 -->
+
+</beans>

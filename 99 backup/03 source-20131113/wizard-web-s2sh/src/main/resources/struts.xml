@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<include file="struts-default.xml" />
+
+	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true" />
+	<constant name="struts.objectFactory.spring.autoWire" value="type" />
+	<constant name="struts.objectFactory" value="spring" />
+
+	<package name="main" extends="struts-default">
+		<action name="login" class="loginAction" method="execute">
+			<result name="success">/WEB-INF/views/wizard/system/main.jsp</result>
+			<result name="fail">/WEB-INF/views/wizard/system/login.jsp</result>
+		</action>
+	</package>
+	<package name="json" extends="json-default">
+		<action name="jsonTest" class="loginAction" method="jsonTest">
+			<result name="success" type="json"></result>
+		</action>
+	</package>
+
+</struts>

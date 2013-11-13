@@ -1,0 +1,11 @@
+// See README.TXT for information and build instructions.
+
+package FEPDataChannel;
+option java_package = "com.wizard.protobuf.data";
+option java_outer_classname = "WizardData";
+
+message WizardData {
+	required int32 id = 1;
+	optional string name = 2;
+	repeated string data = 3;
+}

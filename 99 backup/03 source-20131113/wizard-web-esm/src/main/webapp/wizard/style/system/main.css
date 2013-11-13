@@ -1,0 +1,25 @@
+div.foot {
+	text-align: center;
+	font-weight: 800;
+	letter-spacing: 8px;
+}
+
+a:link {
+	text-decoration: none;
+	color: #0000FF;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #0000FF;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #0000FF;
+}
+
+a:active {
+	text-decoration: none;
+	color: #0000FF;
+}

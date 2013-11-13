@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.wizard.web.basic.io.ParameterCollection"
+			alias="Collection" />
+		<typeAlias type="com.wizard.web.domain.entity.WizardAuthority"
+			alias="WizardAuthority" />
+		<typeAlias type="com.wizard.web.domain.entity.WizardCode"
+			alias="WizardCode" />
+		<typeAlias type="com.wizard.web.domain.entity.WizardLogInfo"
+			alias="WizardLogInfo" />
+		<typeAlias type="com.wizard.web.domain.entity.WizardMenu"
+			alias="WizardMenu" />
+		<typeAlias type="com.wizard.web.domain.entity.WizardOrgInfo"
+			alias="WizardOrgInfo" />
+		<typeAlias type="com.wizard.web.domain.entity.WizardRoleInfo"
+			alias="WizardRoleInfo" />
+		<typeAlias type="com.wizard.web.domain.entity.WizardUserInfo"
+			alias="WizardUserInfo" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="mybatis/wizard/basic/SecuritySqlMap.xml" />
+		<mapper resource="mybatis/wizard/basic/LoggerSqlMap.xml" />
+
+		<mapper resource="mybatis/wizard/application/common/WizardCommonSqlMap.xml" />
+
+		<mapper resource="mybatis/wizard/application/system/MainSqlMap.xml" />
+
+		<mapper resource="mybatis/wizard/application/manage/MenuManageSqlMap.xml" />
+		<mapper resource="mybatis/wizard/application/manage/OrgManageSqlMap.xml" />
+		<mapper resource="mybatis/wizard/application/manage/RoleManageSqlMap.xml" />
+		<mapper resource="mybatis/wizard/application/manage/UserManageSqlMap.xml" />
+		<mapper resource="mybatis/wizard/application/manage/PermissionManageSqlMap.xml" />
+
+		<mapper resource="mybatis/wizard/application/maintain/CodeMaintainSqlMap.xml" />
+		<mapper resource="mybatis/wizard/application/maintain/LogMaintainSqlMap.xml" />
+	</mappers>
+</configuration>
