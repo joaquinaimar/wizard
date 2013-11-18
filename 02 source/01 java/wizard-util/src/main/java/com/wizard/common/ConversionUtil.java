@@ -16,19 +16,21 @@ public final class ConversionUtil {
 	// =========================================================================
 	// convertToBytes
 	// =========================================================================
-	public static byte[] convertToBytes(String str, Charset charset) {
+	public static byte[] convertToBytes(final String str, final Charset charset) {
 		return str.getBytes(charset);
 	}
 
-	public static byte[] convertToBytes(String str, String charsetName) {
+	public static byte[] convertToBytes(final String str,
+			final String charsetName) {
 		return convertToBytes(str, Charset.forName(charsetName));
 	}
 
-	public static byte[] convertToBytes(String str) {
+	public static byte[] convertToBytes(final String str) {
 		return convertToBytes(str, Charset.defaultCharset());
 	}
 
-	public static byte[] convertToBytes(char[] chars, Charset charset) {
+	public static byte[] convertToBytes(final char[] chars,
+			final Charset charset) {
 		CharBuffer cb = CharBuffer.allocate(chars.length);
 		cb.put(chars);
 		cb.flip();
@@ -36,29 +38,30 @@ public final class ConversionUtil {
 		return bb.array();
 	}
 
-	public static byte[] convertToBytes(char[] chars, String charsetName) {
+	public static byte[] convertToBytes(final char[] chars,
+			final String charsetName) {
 		return convertToBytes(chars, Charset.forName(charsetName));
 	}
 
-	public static byte[] convertToBytes(char[] chars) {
+	public static byte[] convertToBytes(final char[] chars) {
 		return convertToBytes(chars, Charset.defaultCharset());
 	}
 
-	public static byte[] convertToBytes(short s) {
+	public static byte[] convertToBytes(final short s) {
 		byte[] bytes = new byte[2];
 		bytes[0] = (byte) (s & 0xff);
 		bytes[1] = (byte) ((s & 0xff00) >> 8);
 		return bytes;
 	}
 
-	public static byte[] convertToBytes(char c) {
+	public static byte[] convertToBytes(final char c) {
 		byte[] bytes = new byte[2];
 		bytes[0] = (byte) (c);
 		bytes[1] = (byte) (c >> 8);
 		return bytes;
 	}
 
-	public static byte[] convertToBytes(int i) {
+	public static byte[] convertToBytes(final int i) {
 		byte[] bytes = new byte[4];
 		bytes[0] = (byte) (i & 0xff);
 		bytes[1] = (byte) ((i & 0xff00) >> 8);
@@ -67,7 +70,7 @@ public final class ConversionUtil {
 		return bytes;
 	}
 
-	public static byte[] convertToBytes(long l) {
+	public static byte[] convertToBytes(final long l) {
 		byte[] bytes = new byte[8];
 		bytes[0] = (byte) (l & 0xff);
 		bytes[1] = (byte) ((l >> 8) & 0xff);
@@ -80,12 +83,12 @@ public final class ConversionUtil {
 		return bytes;
 	}
 
-	public static byte[] convertToBytes(float f) {
+	public static byte[] convertToBytes(final float f) {
 		int intBits = Float.floatToIntBits(f);
 		return convertToBytes(intBits);
 	}
 
-	public static byte[] convertToBytes(double d) {
+	public static byte[] convertToBytes(final double d) {
 		long intBits = Double.doubleToLongBits(d);
 		return convertToBytes(intBits);
 	}
@@ -93,18 +96,19 @@ public final class ConversionUtil {
 	// =========================================================================
 	// convertToChar
 	// =========================================================================
-	public static char convertToChar(byte[] bytes) {
+	public static char convertToChar(final byte[] bytes) {
 		return (char) ((0xff & bytes[0]) | (0xff00 & (bytes[1] << 8)));
+	}
+
+	public static char convertToChar(final int i) {
+		return (char) i;
 	}
 
 	// =========================================================================
 	// convertToChars
 	// =========================================================================
-	public static char[] convertToChars(String str) {
-		return str.toCharArray();
-	}
-
-	public static char[] convertToChars(byte[] bytes, Charset charset) {
+	public static char[] convertToChars(final byte[] bytes,
+			final Charset charset) {
 		ByteBuffer bb = ByteBuffer.allocate(bytes.length);
 		bb.put(bytes);
 		bb.flip();
@@ -112,34 +116,55 @@ public final class ConversionUtil {
 		return cb.array();
 	}
 
-	public static char[] convertToChars(byte[] bytes, String charsetName) {
+	public static char[] convertToChars(final byte[] bytes,
+			final String charsetName) {
 		return convertToChars(bytes, Charset.forName(charsetName));
 	}
 
-	public static char[] convertToChars(byte[] bytes) {
+	public static char[] convertToChars(final byte[] bytes) {
 		return convertToChars(bytes, Charset.defaultCharset());
+	}
+
+	public static char[] convertToChars(final String str) {
+		return str.toCharArray();
 	}
 
 	// =========================================================================
 	// convertToShort
 	// =========================================================================
-	public static short convertToShort(byte[] bytes) {
+	public static short convertToShort(final byte[] bytes) {
 		return (short) ((0xff & bytes[0]) | (0xff00 & (bytes[1] << 8)));
+	}
+
+	public static short convertToShort(final String str, final int radix) {
+		return Short.parseShort(str, radix);
+	}
+
+	public static short convertToShort(final String str) {
+		return Short.parseShort(str);
 	}
 
 	// =========================================================================
 	// convertToInt
 	// =========================================================================
-	public static int convertToInt(byte[] bytes) {
+	public static int convertToInt(final byte[] bytes) {
 		return (0xff & bytes[0]) | (0xff00 & (bytes[1] << 8))
 				| (0xff0000 & (bytes[2] << 16))
 				| (0xff000000 & (bytes[3] << 24));
 	}
 
+	public static int convertToInt(final String str, final int radix) {
+		return Integer.parseInt(str, radix);
+	}
+
+	public static int convertToInt(final String str) {
+		return Integer.parseInt(str);
+	}
+
 	// =========================================================================
 	// convertToLong
 	// =========================================================================
-	public static long convertToLong(byte[] bytes) {
+	public static long convertToLong(final byte[] bytes) {
 		return (0xffL & (long) bytes[0]) | (0xff00L & ((long) bytes[1] << 8))
 				| (0xff0000L & ((long) bytes[2] << 16))
 				| (0xff000000L & ((long) bytes[3] << 24))
@@ -149,80 +174,99 @@ public final class ConversionUtil {
 				| (0xff00000000000000L & ((long) bytes[7] << 56));
 	}
 
+	public static long convertToLong(final String str, final int radix) {
+		return Long.parseLong(str, radix);
+	}
+
+	public static long convertToLong(final String str) {
+		return Long.parseLong(str);
+	}
+
 	// =========================================================================
 	// convertToFloat
 	// =========================================================================
-	public static float convertToFloat(byte[] bytes) {
+	public static float convertToFloat(final byte[] bytes) {
 		return Float.intBitsToFloat(convertToInt(bytes));
+	}
+
+	public static float convertToFloat(final String str) {
+		return Float.parseFloat(str);
 	}
 
 	// =========================================================================
 	// convertToDouble
 	// =========================================================================
-	public static double convertToDouble(byte[] bytes) {
-		long l = convertToLong(bytes);
-		return Double.longBitsToDouble(l);
+	public static double convertToDouble(final byte[] bytes) {
+		return Double.longBitsToDouble(convertToLong(bytes));
+	}
+
+	public static double convertToDouble(final String str) {
+		return Double.parseDouble(str);
 	}
 
 	// =========================================================================
 	// convertToString
 	// =========================================================================
-	public static String convertToString(byte[] bytes, Charset charset) {
+	public static String convertToString(final byte[] bytes,
+			final Charset charset) {
 		return new String(bytes, charset);
 	}
 
-	public static String convertToString(byte[] bytes, String charsetName) {
+	public static String convertToString(final byte[] bytes,
+			final String charsetName) {
 		return convertToString(bytes, Charset.forName(charsetName));
 	}
 
-	public static String convertToString(byte[] bytes) {
+	public static String convertToString(final byte[] bytes) {
 		return convertToString(bytes, Charset.defaultCharset());
 	}
 
-	public static String convertToString(char[] chars) {
+	public static String convertToString(final char[] chars) {
 		return new String(chars);
 	}
 
-	public static String convertToString(short s) {
+	public static String convertToString(final short s) {
 		return String.valueOf(s);
 	}
 
-	public static String convertToString(int i) {
+	public static String convertToString(final int i) {
 		return String.valueOf(i);
 	}
 
-	public static String convertToString(long l) {
+	public static String convertToString(final long l) {
 		return String.valueOf(l);
 	}
 
-	public static String convertToString(float f) {
+	public static String convertToString(final float f) {
 		return String.valueOf(f);
 	}
 
-	public static String convertToString(double d) {
+	public static String convertToString(final double d) {
 		return String.valueOf(d);
 	}
 
-	public static String convertToString(Date date, DateFormat dateFormat) {
+	public static String convertToString(final Date date,
+			final DateFormat dateFormat) {
 		return dateFormat.format(date);
 	}
 
-	public static String convertToString(Date date, String format) {
+	public static String convertToString(final Date date, final String format) {
 		return convertToString(date, new SimpleDateFormat(format));
 	}
 
 	// =========================================================================
 	// convertToDate
 	// =========================================================================
-	public static Date convertToDate(long m) {
+	public static Date convertToDate(final long m) {
 		return new Date(m);
 	}
 
-	public static Date convertToDate(byte[] bytes) {
+	public static Date convertToDate(final byte[] bytes) {
 		return convertToDate(convertToLong(bytes));
 	}
 
-	public static Date convertToDate(String str, DateFormat dateFormat) {
+	public static Date convertToDate(final String str,
+			final DateFormat dateFormat) {
 		try {
 			return dateFormat.parse(str);
 		} catch (ParseException e) {
@@ -230,7 +274,11 @@ public final class ConversionUtil {
 		}
 	}
 
-	public static Date convertToDate(String str, String format) {
+	public static Date convertToDate(final String str, final String format) {
 		return convertToDate(str, new SimpleDateFormat(format));
+	}
+
+	public static Date convertToDate(final String str) {
+		return convertToDate(str, new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));
 	}
 }
