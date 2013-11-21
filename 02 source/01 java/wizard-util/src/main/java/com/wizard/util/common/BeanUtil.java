@@ -1,4 +1,4 @@
-package com.wizard.common;
+package com.wizard.util.common;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -10,6 +10,7 @@ import java.util.Map;
 public final class BeanUtil {
 
 	private BeanUtil() {
+		throw new RuntimeException("Cannot create util class instance!");
 	}
 
 	public static Class<?> getClass(final Object obj) {
@@ -57,7 +58,7 @@ public final class BeanUtil {
 			if (!CommonUtil.isNull(superClass))
 				list.addAll(CommonUtil.changeArrayToList(getFields(superClass,
 						IsSuperClass)));
-			return CommonUtil.changeListToArray(list, Field.class);
+			return CommonUtil.changeListToArray(list);
 		} else {
 			return fields;
 		}
@@ -77,7 +78,7 @@ public final class BeanUtil {
 			if (!CommonUtil.isNull(superClass))
 				list.addAll(CommonUtil.changeArrayToList(getDeclaredFields(
 						superClass, IsSuperClass)));
-			return CommonUtil.changeListToArray(list, Field.class);
+			return CommonUtil.changeListToArray(list);
 		} else {
 			return fields;
 		}
@@ -173,7 +174,7 @@ public final class BeanUtil {
 			if (!CommonUtil.isNull(superClass))
 				list.addAll(CommonUtil.changeArrayToList(getMethods(superClass,
 						IsSuperClass)));
-			return CommonUtil.changeListToArray(list, Method.class);
+			return CommonUtil.changeListToArray(list);
 		} else {
 			return methods;
 		}
@@ -194,7 +195,7 @@ public final class BeanUtil {
 			if (!CommonUtil.isNull(superClass))
 				list.addAll(CommonUtil.changeArrayToList(getDeclaredMethods(
 						superClass, IsSuperClass)));
-			return CommonUtil.changeListToArray(list, Method.class);
+			return CommonUtil.changeListToArray(list);
 		} else {
 			return methods;
 		}
@@ -212,7 +213,7 @@ public final class BeanUtil {
 		for (Method method : methods)
 			if (methodName.equals(method.getName()))
 				list.add(method);
-		return CommonUtil.changeListToArray(list, Method.class);
+		return CommonUtil.changeListToArray(list );
 	}
 
 	public static Method[] getMethods(final Object obj,

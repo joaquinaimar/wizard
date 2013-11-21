@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.wizard</groupId>
-  <artifactId>wizard-web-core</artifactId>
+  <artifactId>wizard-j2ee</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>wizard-web-core</name>
+  <name>wizard-j2ee</name>
   <url>http://maven.apache.org</url>
 
 	<properties>

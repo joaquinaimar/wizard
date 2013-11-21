@@ -1,4 +1,4 @@
-package com.wizard.common;
+package com.wizard.util.common;
 
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
@@ -11,6 +11,7 @@ import java.util.Date;
 public final class ConversionUtil {
 
 	private ConversionUtil() {
+		throw new RuntimeException("Cannot create util class instance!");
 	}
 
 	// =========================================================================
@@ -280,5 +281,25 @@ public final class ConversionUtil {
 
 	public static Date convertToDate(final String str) {
 		return convertToDate(str, new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));
+	}
+	
+	// =========================================================================
+	// convertBytesToHex
+	// =========================================================================
+	public static String convertBytesToHex(byte[] data, int m, int n) {
+		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				'a', 'b', 'c', 'd', 'e', 'f' };
+		char[] temp = new char[n * 2];
+		int k = m + n;
+		for (int l = m; l < k; l++) {
+			byte b = data[l];
+			temp[l * 2] = hexDigits[b >>> 4 & 0x0f];
+			temp[l * 2 + 1] = hexDigits[b & 0x0f];
+		}
+		return new String(temp);
+	}
+
+	public static String convertBytesToHex(byte[] data) {
+		return convertBytesToHex(data, 0, data.length);
 	}
 }

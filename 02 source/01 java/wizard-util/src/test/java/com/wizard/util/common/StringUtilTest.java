@@ -1,8 +1,10 @@
-package com.wizard.common;
+package com.wizard.util.common;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
+
+import com.wizard.util.common.StringUtil;
 
 public class StringUtilTest {
 

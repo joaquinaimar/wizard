@@ -1,4 +1,4 @@
-package com.wizard.common;
+package com.wizard.util.common;
 
 import java.util.regex.Pattern;
 
@@ -9,6 +9,7 @@ public class StringUtil {
 	public final static String SPACE = " ";
 
 	private StringUtil() {
+		throw new RuntimeException("Cannot create util class instance!");
 	}
 
 	public static boolean isNull(final String str) {

@@ -1,4 +1,4 @@
-package com.wizard.common;
+package com.wizard.util.common;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import java.util.List;
 public final class CommonUtil {
 
 	private CommonUtil() {
+		throw new RuntimeException("Cannot create util class instance!");
 	}
 
 	public static boolean isNull(final Object obj) {
@@ -21,8 +22,12 @@ public final class CommonUtil {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <X> X[] changeListToArray(final List<X> list, Class<X> cls) {
-		X[] array = (X[]) Array.newInstance(cls, list.size());
+	public static <X> X[] changeListToArray(final List<X> list) {
+		if (0 == list.size())
+			return null;
+		X[] array = (X[]) Array
+				.newInstance(list.get(0).getClass(), list.size());
 		return list.toArray(array);
 	}
+
 }

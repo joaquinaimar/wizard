@@ -1,4 +1,4 @@
-package com.wizard.common;
+package com.wizard.util.common;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class MathUtil {
 
 	private MathUtil() {
+		throw new RuntimeException("Cannot create util class instance!");
 	}
 
 	public static int sum(final int... nums) {
@@ -38,18 +39,17 @@ public class MathUtil {
 	}
 
 	public static int mod(final int dividend, final int divisor) {
-		return divisor % dividend;
+		return dividend % divisor;
 	}
 
 	public static double round(double num, int bit) {
 		int t = 10;
 		for (int i = 0; i < bit; i++)
 			t *= 10;
-		int n = (int) (num * t);
-		if (5 <= n % 10) {
+		double n = num * t;
+		if (5 <= (n % 10))
 			n += 10;
-		}
-		return (double) n / t;
+		return (double) ((int) n / 10) / (t / 10);
 	}
 
 	public static double round(double num) {
