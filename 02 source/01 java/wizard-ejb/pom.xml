@@ -3,13 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wizard</groupId>
 	<artifactId>wizard-ejb</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>1.0.0</version>
 	<name>wizard-ejb Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<web.port>8080</web.port>
-
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- wizard -->
@@ -17,6 +15,7 @@
 
 		<!-- dependency -->
 		<junit.version>4.10</junit.version>
+		<ejb.version>3.0</ejb.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<log4j.version>1.2.16</log4j.version>
 
@@ -25,8 +24,7 @@
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<maven-deploy-plugin.version>2.8-SNAPSHOT</maven-deploy-plugin.version>
 		<maven-surefire-plugin.version>2.10</maven-surefire-plugin.version>
-		<tomcat7-maven-plugin.version>2.1-SNAPSHOT</tomcat7-maven-plugin.version>
-		<jetty-maven-plugin.version>8.0.1.v20110908</jetty-maven-plugin.version>
+		<maven-ejb-plugin.version>2.3</maven-ejb-plugin.version>
 	</properties>
 	<dependencies>
 
@@ -49,6 +47,13 @@
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>ejb-api</artifactId>
+			<version>${ejb.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- LOG -->
@@ -100,63 +105,11 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>${tomcat7-maven-plugin.version}</version>
-				<configuration>
-					<port>${web.port}</port>
-					<uriEncoding>UTF-8</uriEncoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty-maven-plugin.version}</version>
-				<configuration>
-					<webAppConfig>
-						<contextPath>/wizard-cxf</contextPath>
-					</webAppConfig>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>${web.port}</port>
-							<maxIdleTime>60000</maxIdleTime>
-						</connector>
-					</connectors>
-					<systemProperties>
-						<systemProperty>
-							<name>org.eclipse.jetty.util.URI.charset</name>
-							<value>UTF-8</value>
-						</systemProperty>
-					</systemProperties>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>${maven-ejb-plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>people.apache.snapshots</id>
-			<url>http://repository.apache.org/content/groups/snapshots-group/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>apache.snapshots</id>
-			<name>Apache Snapshots</name>
-			<url>http://repository.apache.org/content/groups/snapshots-group/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 </project>
 

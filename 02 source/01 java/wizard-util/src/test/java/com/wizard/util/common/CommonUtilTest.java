@@ -11,6 +11,30 @@ import com.wizard.util.common.CommonUtil;
 public class CommonUtilTest {
 
 	@Test
+	public void testConsoleOutPrint() {
+		int i = 1;
+		CommonUtil.consoleOutPrint(i);
+	}
+
+	@Test
+	public void testConsoleOutPrintln() {
+		int i = 2;
+		CommonUtil.consoleOutPrintln(i);
+	}
+
+	@Test
+	public void testConsoleErrPrint() {
+		int i = 3;
+		CommonUtil.consoleErrPrint(i);
+	}
+
+	@Test
+	public void testConsoleErrPrintln() {
+		int i = 4;
+		CommonUtil.consoleErrPrintln(i);
+	}
+
+	@Test
 	public void testChangeListToArray01() {
 		List<String> list = new ArrayList<String>();
 		list.add("a");
