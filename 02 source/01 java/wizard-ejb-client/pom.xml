@@ -180,15 +180,17 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>${exec-maven-plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
 				<configuration>
-					<mainClass>${mainClass}</mainClass>
+					<executable>java</executable>
+					<arguments>
+						<argument>-server</argument>
+						<argument>-XX:MaxPermSize=64m</argument>
+						<argument>-Xms256m</argument>
+						<argument>-Xmx256m</argument>
+						<argument>-classpath</argument>
+						<classpath />
+						<argument>${mainClass}</argument>
+					</arguments>
 				</configuration>
 			</plugin>
 		</plugins>
