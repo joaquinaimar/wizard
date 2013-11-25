@@ -9,7 +9,7 @@ public class StringUtil {
 	public final static String SPACE = " ";
 
 	private StringUtil() {
-		throw new RuntimeException("Cannot create util class instance!");
+		throw new UnsupportedOperationException("Not supported");
 	}
 
 	public static boolean isNull(final String str) {

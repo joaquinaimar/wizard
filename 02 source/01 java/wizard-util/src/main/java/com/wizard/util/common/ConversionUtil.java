@@ -11,7 +11,7 @@ import java.util.Date;
 public final class ConversionUtil {
 
 	private ConversionUtil() {
-		throw new RuntimeException("Cannot create util class instance!");
+		throw new UnsupportedOperationException("Not supported");
 	}
 
 	// =========================================================================

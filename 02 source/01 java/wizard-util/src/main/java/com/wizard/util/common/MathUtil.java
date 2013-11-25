@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class MathUtil {
 
 	private MathUtil() {
-		throw new RuntimeException("Cannot create util class instance!");
+		throw new UnsupportedOperationException("Not supported");
 	}
 
 	public static int sum(final int... nums) {

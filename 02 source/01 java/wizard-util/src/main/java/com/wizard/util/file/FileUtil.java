@@ -18,7 +18,7 @@ import com.wizard.util.common.ConversionUtil;
 public final class FileUtil {
 
 	private FileUtil() {
-		throw new RuntimeException("Cannot create util class instance!");
+		throw new UnsupportedOperationException("Not supported");
 	}
 
 	public static File getFile(final String path) {

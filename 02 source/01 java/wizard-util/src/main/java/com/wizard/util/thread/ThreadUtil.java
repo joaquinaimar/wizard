@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 public final class ThreadUtil {
 
 	private ThreadUtil() {
-		throw new RuntimeException("Cannot create util class instance!");
+		throw new UnsupportedOperationException("Not supported");
 	}
 
 	public BaseIntervalThread doInterval(final BaseIntervalThread it) {

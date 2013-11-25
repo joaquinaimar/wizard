@@ -3,6 +3,7 @@ package com.wizard.util.common;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
 public final class BeanUtil {
 
 	private BeanUtil() {
-		throw new RuntimeException("Cannot create util class instance!");
+		throw new UnsupportedOperationException("Not supported");
 	}
 
 	public static Class<?> getClass(final Object obj) {
@@ -213,7 +214,7 @@ public final class BeanUtil {
 		for (Method method : methods)
 			if (methodName.equals(method.getName()))
 				list.add(method);
-		return CommonUtil.changeListToArray(list );
+		return CommonUtil.changeListToArray(list);
 	}
 
 	public static Method[] getMethods(final Object obj,
@@ -260,4 +261,21 @@ public final class BeanUtil {
 			return null;
 		}
 	}
+
+	public static boolean isArray(final Class<?> cls) {
+		return cls.isArray();
+	}
+
+	public static boolean isArray(final Object obj) {
+		return isArray(getClass(obj));
+	}
+
+	public static boolean isInstanceof(final Object obj, final Class<?> cls) {
+		return cls.isInstance(obj);
+	}
+
+	public static boolean isCollection(final Object obj) {
+		return isInstanceof(obj, Collection.class);
+	}
+
 }
