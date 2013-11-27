@@ -44,6 +44,14 @@ public final class CommonUtil {
 		return (null == obj);
 	}
 
+	public static <X> boolean isEmpty(final X[] array) {
+		return (isNull(array) || 0 == array.length);
+	}
+
+	public static boolean isEmpty(final Collection<?> collection) {
+		return (isNull(collection) || 0 == collection.size());
+	}
+
 	public static <X> Collection<X> changeArrayToList(final X[] array) {
 		Collection<X> list = new ArrayList<X>(array.length);
 		for (X x : array)

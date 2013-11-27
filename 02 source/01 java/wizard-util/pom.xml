@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.wizard</groupId>
-  <artifactId>wizard-util</artifactId>
-  <version>1.0.0</version>
-  <packaging>jar</packaging>
+	<groupId>com.wizard</groupId>
+	<artifactId>wizard-util</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
 
-  <name>wizard-util</name>
-  <url>http://maven.apache.org</url>
+	<name>wizard-util</name>
+	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,10 +23,6 @@
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<maven-deploy-plugin.version>2.8-SNAPSHOT</maven-deploy-plugin.version>
 		<maven-surefire-plugin.version>2.10</maven-surefire-plugin.version>
-		<maven-site-plugin.version>3.0</maven-site-plugin.version>
-		<maven-project-info-reports-plugin.version>2.4</maven-project-info-reports-plugin.version>
-		<maven-surefire-plugin.version>2.10</maven-surefire-plugin.version>
-		<cobertura-maven-plugin.version>2.5.1</cobertura-maven-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -79,7 +75,6 @@
 					<argLine>-XX:-UseSplitVerifier</argLine>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 </project>

@@ -2,7 +2,7 @@ package com.wizard.util.common;
 
 import java.util.regex.Pattern;
 
-public class StringUtil {
+public final class StringUtil {
 
 	public final static String BLANK = "";
 

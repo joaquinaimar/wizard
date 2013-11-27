@@ -5,9 +5,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import com.wizard.util.common.BeanUtil;
@@ -82,12 +86,20 @@ public final class JdbcUtil {
 		}
 	}
 
+	public static ResultSet query(final Connection con, final String sql) {
+		return query(createStatement(con), sql);
+	}
+
 	public static int update(final Statement statement, final String sql) {
 		try {
 			return statement.executeUpdate(sql);
 		} catch (SQLException e) {
 			return -1 * e.getErrorCode();
 		}
+	}
+
+	public static int update(final Connection con, final String sql) {
+		return update(createStatement(con), sql);
 	}
 
 	public static PreparedStatement setParameters(
@@ -134,6 +146,12 @@ public final class JdbcUtil {
 		}
 	}
 
+	public static ResultSet query(final Connection con, final String sql,
+			final Object[] parameters) {
+		PreparedStatement statement = prepareStatement(con, sql);
+		return query(statement, parameters);
+	}
+
 	public static int update(final PreparedStatement statement,
 			final Object[] parameters) {
 		try {
@@ -141,6 +159,159 @@ public final class JdbcUtil {
 			return statement.executeUpdate();
 		} catch (SQLException e) {
 			return -1 * e.getErrorCode();
+		}
+	}
+
+	public static int update(final Connection con, final String sql,
+			final Object[] parameters) {
+		PreparedStatement statement = prepareStatement(con, sql);
+		return update(statement, parameters);
+	}
+
+	public static Collection<Map<String, Object>> select(
+			final Statement statement, final String sql) {
+		ResultSet rs = query(statement, sql);
+		if (null == rs)
+			return null;
+		return convertResultSetToMap(rs);
+	}
+
+	public static Collection<Map<String, Object>> select(final Connection con,
+			final String sql) {
+		return select(createStatement(con), sql);
+	}
+
+	public static Collection<Map<String, Object>> select(
+			final PreparedStatement statement, final Object[] parameters) {
+		ResultSet rs = query(statement, parameters);
+		if (null == rs)
+			return null;
+		return convertResultSetToMap(rs);
+	}
+
+	public static Collection<Map<String, Object>> select(final Connection con,
+			final String sql, final Object[] parameters) {
+		PreparedStatement statement = prepareStatement(con, sql);
+		return select(statement, parameters);
+	}
+
+	private static Collection<Map<String, Object>> convertResultSetToMap(
+			final ResultSet rs) {
+		try {
+			ResultSetMetaData metaData = rs.getMetaData();
+			int colum = metaData.getColumnCount();
+			Collection<Map<String, Object>> collection = new ArrayList<Map<String, Object>>();
+			Map<String, Object> row = null;
+			while (rs.next()) {
+				row = new HashMap<String, Object>();
+				for (int i = 0; i < colum; i++)
+					row.put(metaData.getColumnName(i), rs.getObject(i));
+				collection.add(row);
+			}
+			return collection;
+		} catch (SQLException e) {
+			return null;
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
+
+	public static <X> Collection<X> selectEntity(final Statement statement,
+			final String sql, final Class<X> cls) {
+		ResultSet rs = query(statement, sql);
+		if (null == rs)
+			return null;
+		return convertResultSetToEntity(rs, cls);
+	}
+
+	public static <X> Collection<X> selectEntity(final Connection con,
+			final String sql, final Class<X> cls) {
+		return selectEntity(createStatement(con), sql, cls);
+	}
+
+	public static <X> Collection<X> selectEntity(
+			final PreparedStatement statement, final Object[] parameters,
+			final Class<X> cls) {
+		ResultSet rs = query(statement, parameters);
+		if (null == rs)
+			return null;
+		return convertResultSetToEntity(rs, cls);
+	}
+
+	public static <X> Collection<X> selectEntity(final Connection con,
+			final String sql, final Object[] parameters, final Class<X> cls) {
+		PreparedStatement statement = prepareStatement(con, sql);
+		return selectEntity(statement, parameters, cls);
+	}
+
+	private static <X> Collection<X> convertResultSetToEntity(
+			final ResultSet rs, final Class<X> cls) {
+		try {
+			ResultSetMetaData metaData = rs.getMetaData();
+			int colum = metaData.getColumnCount();
+			Collection<X> collection = new ArrayList<X>();
+			X row = null;
+			while (rs.next()) {
+				row = cls.newInstance();
+				for (int i = 0; i < colum; i++)
+					BeanUtil.setFieldValue(row, metaData.getColumnName(i),
+							rs.getObject(i));
+				collection.add(row);
+			}
+			return collection;
+		} catch (SQLException e) {
+			return null;
+		} catch (InstantiationException | IllegalAccessException e) {
+			return null;
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
+
+	public static Object uniqueResult(final Statement statement,
+			final String sql) {
+		ResultSet rs = query(statement, sql);
+		if (null == rs)
+			return null;
+		return uniqueResult(rs);
+	}
+
+	public static Object uniqueResult(final Connection con, final String sql) {
+		return uniqueResult(createStatement(con), sql);
+	}
+
+	public static Object uniqueResult(final PreparedStatement statement,
+			final Object[] parameters) {
+		ResultSet rs = query(statement, parameters);
+		if (null == rs)
+			return null;
+		return uniqueResult(rs);
+	}
+
+	public static Object uniqueResult(final Connection con, final String sql,
+			final Object[] parameters) {
+		PreparedStatement statement = prepareStatement(con, sql);
+		return uniqueResult(statement, parameters);
+	}
+
+	private static Object uniqueResult(ResultSet rs) {
+		try {
+			while (rs.next())
+				return rs.getObject(0);
+			return null;
+		} catch (SQLException e) {
+			return null;
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
 		}
 	}
 
