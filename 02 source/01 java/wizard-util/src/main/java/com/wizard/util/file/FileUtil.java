@@ -25,6 +25,14 @@ public final class FileUtil {
 		return new File(path);
 	}
 
+	public static boolean exists(final String path) {
+		return exists(getFile(path));
+	}
+
+	public static boolean exists(final File file) {
+		return file.exists();
+	}
+
 	public static File getDirectory(final File file) {
 		return file.getParentFile();
 	}

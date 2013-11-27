@@ -1,4 +1,4 @@
-package com.wizard.j2ee.dao;
+package com.wizard.j2ee.dao.hibernate;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -11,6 +11,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.wizard.j2ee.dao.EntityTemplate;
+import com.wizard.j2ee.dao.PageRequest;
+import com.wizard.j2ee.dao.PageResponse;
 
 @Repository
 @SuppressWarnings({ "rawtypes", "unchecked" })
