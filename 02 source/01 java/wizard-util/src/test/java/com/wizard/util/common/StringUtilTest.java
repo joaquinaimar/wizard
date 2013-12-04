@@ -50,4 +50,18 @@ public class StringUtilTest {
 		Assert.assertEquals("abc", out);
 	}
 
+	@Test
+	public void testTrimLeft01() {
+		String in = "   abc   ";
+		String out = StringUtil.trimLeft(in);
+		Assert.assertEquals("abc   ", out);
+	}
+
+	@Test
+	public void testTrimRight01() {
+		String in = "   abc   ";
+		String out = StringUtil.trimRight(in);
+		Assert.assertEquals("   abc", out);
+	}
+
 }

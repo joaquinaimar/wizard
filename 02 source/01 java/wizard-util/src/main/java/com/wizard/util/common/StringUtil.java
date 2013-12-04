@@ -8,6 +8,8 @@ public final class StringUtil {
 
 	public final static String SPACE = " ";
 
+	private final static char CHAR_SPACE = ' ';
+
 	private StringUtil() {
 		throw new UnsupportedOperationException("Not supported");
 	}
@@ -54,8 +56,34 @@ public final class StringUtil {
 		return new String(temps).substring(0, j);
 	}
 
-	public static boolean match(String str, String regex) {
+	public static boolean match(final String str, final String regex) {
 		return Pattern.matches(regex, str);
+	}
+
+	public static String trim(final String str) {
+		return isNull(str) ? str : str.trim();
+	}
+
+	public static String trimLeft(final String str) {
+		if (isNull(str))
+			return str;
+		char[] cs = str.toCharArray();
+		int i = 0;
+		for (; i < cs.length; i++)
+			if (CHAR_SPACE != cs[i])
+				break;
+		return new String(cs, i, cs.length - i);
+	}
+
+	public static String trimRight(final String str) {
+		if (isNull(str))
+			return str;
+		char[] cs = str.toCharArray();
+		int i = cs.length - 1;
+		for (; i >= 0; i--)
+			if (CHAR_SPACE != cs[i])
+				break;
+		return new String(cs, 0, i + 1);
 	}
 
 }
