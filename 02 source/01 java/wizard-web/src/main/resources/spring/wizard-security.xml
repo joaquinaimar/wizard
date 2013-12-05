@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/" />
+		<property name="successUrl" value="/main" />
+		<property name="unauthorizedUrl" value="/" />
+		<property name="filterChainDefinitions">
+			<value>
+				/=anon
+				/wizardframework/Login/login.do=anon
+				/wizard/image/*.ico=anon
+				/lib/**=anon
+				/page/**=anon
+				/jquery/**=anon
+				/jquery-ui/**=anon
+				/jquery-form/**=anon
+				/bootstrap/**=anon
+				/Test/**=anon
+				/**=authc
+			</value>
+		</property>
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod"
+			value="org.apache.shiro.SecurityUtils.setSecurityManager" />
+		<property name="arguments" ref="securityManager" />
+	</bean>
+	<bean id="securityManager" class="com.wizard.j2ee.security.WebSecurityManager">
+		<property name="realm" ref="webAuthorizingRealm" />
+	</bean>
+	<bean id="webAuthorizingRealm" class="com.wizard.j2ee.security.WebAuthorizingRealm">
+		<property name="securityService" ref="dbSecurityService" />
+	</bean>
+
+</beans>

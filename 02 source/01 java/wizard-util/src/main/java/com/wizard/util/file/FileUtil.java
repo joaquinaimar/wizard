@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.zip.CRC32;
-import java.util.zip.CheckedInputStream;
 
 import com.wizard.util.common.CommonUtil;
 import com.wizard.util.common.ConversionUtil;
@@ -159,36 +158,63 @@ public final class FileUtil {
 		return getOutputStream(getFile(path));
 	}
 
-	public static String getFileMd5(final String path) throws Exception {
-		return getFileMd5(new File(path));
+	public static String encrypt(final String path, final String encryptName) {
+		return encrypt(getFile(path), encryptName);
 	}
 
-	public static String getFileMd5(final File file) throws Exception {
+	public static String encrypt(final File file, final String encryptName) {
 		if (!file.isFile())
 			return null;
-		MessageDigest messagedigest = MessageDigest.getInstance("MD5");
-		FileInputStream in = new FileInputStream(file);
-		byte[] buffer = new byte[8192];
-		int length = -1;
-		while ((length = in.read(buffer)) != -1)
-			messagedigest.update(buffer, 0, length);
+		try {
+			MessageDigest messagedigest = MessageDigest
+					.getInstance(encryptName);
+			FileInputStream in = new FileInputStream(file);
+			byte[] buffer = new byte[8192];
+			int length = -1;
+			while ((length = in.read(buffer)) != -1)
+				messagedigest.update(buffer, 0, length);
 
-		in.close();
-		return ConversionUtil.convertBytesToHex(messagedigest.digest());
-	}
-
-	public static String getFileCRC(final String path) throws Exception {
-		return getFileCRC(new File(path));
-	}
-
-	public static String getFileCRC(final File file) throws Exception {
-		FileInputStream in = new FileInputStream(file);
-		CRC32 crc32 = new CRC32();
-		for (CheckedInputStream cin = new CheckedInputStream(in, crc32); cin
-				.read() != -1;) {
+			in.close();
+			return ConversionUtil.convertBytesToHex(messagedigest.digest());
+		} catch (Exception e) {
+			return null;
 		}
-		in.close();
-		return Long.toHexString(crc32.getValue());
+	}
+
+	public static String getFileMd5(final String path) {
+		return getFileMd5(getFile(path));
+	}
+
+	public static String getFileMd5(final File file) {
+		return encrypt(file, "MD5");
+	}
+
+	public static String getFileSHA1(final String path) {
+		return getFileSHA1(getFile(path));
+	}
+
+	public static String getFileSHA1(final File file) {
+		return encrypt(file, "SHA1");
+	}
+
+	public static String getFileCRC32(final String path) {
+		return getFileCRC32(new File(path));
+	}
+
+	public static String getFileCRC32(final File file) {
+		if (!file.isFile())
+			return null;
+		try {
+			FileInputStream in = new FileInputStream(file);
+			CRC32 crc32 = new CRC32();
+			int cnt;
+			while ((cnt = in.read()) != -1)
+				crc32.update(cnt);
+			in.close();
+			return Long.toHexString(crc32.getValue());
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

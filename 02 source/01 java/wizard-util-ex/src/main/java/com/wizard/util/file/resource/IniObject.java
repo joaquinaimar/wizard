@@ -74,4 +74,13 @@ public class IniObject {
 	public void load(final String path) {
 		load(FileUtil.getInputStream(path));
 	}
+
+	public String get(final String sectionName, final String key) {
+		if (!this.ini.containsKey(sectionName))
+			return null;
+		Map<String, String> section = this.ini.get(sectionName);
+		if (!section.containsKey(key))
+			return null;
+		return section.get(key);
+	}
 }

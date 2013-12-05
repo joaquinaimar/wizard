@@ -18,7 +18,7 @@ import com.wizard.j2ee.dao.PageResponse;
 
 @Repository
 @SuppressWarnings({ "rawtypes", "unchecked" })
-public class BaseDao {
+public class HibernateBaseDao {
 
 	@Autowired
 	private SessionFactory sessionFactory = null;

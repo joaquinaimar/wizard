@@ -1,0 +1,84 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+	<!-- 配置数据源 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<bean id="baseDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="initialSize" value="20" />
+		<property name="maxActive" value="500" />
+		<property name="maxIdle" value="50" />
+		<property name="maxWait" value="1000" />
+		<property name="poolPreparedStatements" value="false" />
+		<property name="defaultAutoCommit" value="false" />
+	</bean>
+
+	<!-- mysql -->
+	<bean id="mysqlDS" parent="baseDS">
+		<property name="driverClassName" value="${mysql.driver}" />
+		<property name="url" value="${mysql.url}" />
+		<property name="username" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
+	</bean>
+
+	<!-- pgsql -->
+	<bean id="pgsqlDS" parent="baseDS">
+		<property name="driverClassName" value="${pgsql.driver}" />
+		<property name="url" value="${pgsql.url}" />
+		<property name="username" value="${pgsql.username}" />
+		<property name="password" value="${pgsql.password}" />
+	</bean>
+
+	<!-- 动态数据源 -->
+	<bean id="dataSource" class="com.wizard.web.basic.database.DynamicDataSource" scope="singleton">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="mysql" value-ref="mysqlDS" />
+				<entry key="pgsql" value-ref="pgsqlDS" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="mysqlDS" />
+	</bean>
+
+	<!-- jdbc:initialize-database enabled="false" data-source="dataSource" ignore-failures="DROPS">
+		<jdbc:script location="classpath:wizard_db.sql" />
+	</jdbc:initialize-database-->
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 采用@Transactional注解方式使用事务 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<context:component-scan base-package="com.wizard.web" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
+	<context:component-scan base-package="project" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
+
+	<!-- 基础dao -->
+	<bean id="wizardBaseDao" class="com.wizard.web.basic.database.BaseDao" />
+
+</beans>

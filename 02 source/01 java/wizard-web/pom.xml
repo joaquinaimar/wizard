@@ -44,9 +44,9 @@
 		<log4j.version>1.2.16</log4j.version>
 
 		<!-- webjars -->
-		<bootstrap.version>3.0.0</bootstrap.version>
-		<jquery.version>1.8.3</jquery.version>
-		<jquery-ui.version>1.9.1</jquery-ui.version>
+		<bootstrap.version>3.0.2</bootstrap.version>
+		<jquery.version>2.0.3-1</jquery.version>
+		<jquery-ui.version>1.10.3</jquery-ui.version>
 		<jquery-form.version>3.28.0-2013.02.06-1</jquery-form.version>
 
 		<!-- build -->
