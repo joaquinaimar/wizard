@@ -33,6 +33,13 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/lib/jquery-ex.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/lib/wizard.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/lib/wizard.js"></script>
+
 <!-- common -->
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";

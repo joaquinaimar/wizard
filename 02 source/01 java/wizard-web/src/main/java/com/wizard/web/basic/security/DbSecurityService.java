@@ -12,17 +12,22 @@ public class DbSecurityService implements ISecurityService {
 
 	@Override
 	public Authentication getAuthentication(String user, String password) {
-		return null;
+		Authentication authentication = new Authentication();
+		authentication.setName(user);
+		authentication.setPassword(password);
+		return authentication;
 	}
 
 	@Override
 	public Role[] getRoles(Authentication authentication) {
-		return null;
+		Role role1 = new Role();
+		return new Role[] { role1 };
 	}
 
 	@Override
 	public Permission[] getPermissions(Role role) {
-		return null;
+		Permission permission1 = new Permission();
+		return new Permission[] { permission1 };
 	}
 
 }

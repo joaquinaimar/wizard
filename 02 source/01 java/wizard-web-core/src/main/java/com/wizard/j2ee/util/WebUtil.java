@@ -105,6 +105,11 @@ public final class WebUtil {
 		return request.getAttribute(name);
 	}
 
+	public static void setAttribute(final HttpServletRequest request,
+			final String name, final Object value) {
+		request.setAttribute(name, value);
+	}
+
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getAttributeMap(
 			final HttpServletRequest request) {
@@ -118,6 +123,12 @@ public final class WebUtil {
 		return map;
 	}
 
+	public static void setAttributeMap(final HttpServletRequest request,
+			final Map<String, Object> map) {
+		for (String key : map.keySet())
+			setAttribute(request, key, map.get(key));
+	}
+
 	public static HttpSession getSession(final HttpServletRequest request) {
 		return request.getSession();
 	}
@@ -125,6 +136,11 @@ public final class WebUtil {
 	public static Object getAttribute(final HttpSession session,
 			final String name) {
 		return session.getAttribute(name);
+	}
+
+	public static void setAttribute(final HttpSession session,
+			final String name, final Object value) {
+		session.setAttribute(name, value);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -137,6 +153,16 @@ public final class WebUtil {
 			map.put(name, getAttribute(session, name));
 		}
 		return map;
+	}
+
+	public static void setAttributeMap(final HttpSession session,
+			final Map<String, Object> map) {
+		for (String key : map.keySet())
+			setAttribute(session, key, map.get(key));
+	}
+
+	public static void invalidate(final HttpSession session) {
+		session.invalidate();
 	}
 
 	public static ServletContext getServletContext(final HttpSession session) {
@@ -153,6 +179,11 @@ public final class WebUtil {
 		return servletContext.getAttribute(name);
 	}
 
+	public static void setAttribute(final ServletContext servletContext,
+			final String name, final Object value) {
+		servletContext.setAttribute(name, value);
+	}
+
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getAttributeMap(
 			final ServletContext servletContext) {
@@ -164,6 +195,12 @@ public final class WebUtil {
 			map.put(name, getAttribute(servletContext, name));
 		}
 		return map;
+	}
+
+	public static void setAttributeMap(final ServletContext servletContext,
+			final Map<String, Object> map) {
+		for (String key : map.keySet())
+			setAttribute(servletContext, key, map.get(key));
 	}
 
 }

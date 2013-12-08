@@ -33,21 +33,21 @@
 						alt="" /></li>
 				</ul>
 			</div>
-
 		</div>
 		<div class="col-md-3">
-			<form id="loginForm" class="form-signin" method="post">
+			<form id="loginForm" class="form-signin" method="post"
+				action="wizardframework/login/login.do">
 				<fieldset>
 					<legend>
 						<h3>请登录</h3>
 					</legend>
 					<div class="form-row">
-						<input type="text" name="user" class="form-control"
-							placeholder="用户名" />
+						<input type="text" name="username" class="form-control"
+							placeholder="用户名" autocomplete="off" />
 					</div>
 					<div class="form-row">
-						<input type="password" name="pwd" class="form-control"
-							placeholder="密码" />
+						<input type="password" name="password" class="form-control"
+							placeholder="密码" autocomplete="off" />
 					</div>
 					<div class="form-row">
 						<button id="btnLogin" class="btn btn-primary" type="button">登录</button>
