@@ -17,7 +17,6 @@ public class CxfClient {
 				"classpath:spring/wizard.xml");
 
 		ILogin loginService = (ILogin) context.getBean("login");
-
 		CommonUtil.consoleOutPrintln(loginService.login("admin", "111"));
 
 	}

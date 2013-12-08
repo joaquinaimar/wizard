@@ -18,8 +18,16 @@ public final class StringUtil {
 		return CommonUtil.isNull(str);
 	}
 
+	public static String isNull(final String str, final String defaultStr) {
+		return isNull(str) ? defaultStr : str;
+	}
+
 	public static boolean isBlank(final String str) {
 		return CommonUtil.isNull(str) || BLANK.equals(str);
+	}
+
+	public static String isBlank(final String str, final String defaultStr) {
+		return isBlank(str) ? defaultStr : str;
 	}
 
 	public static String doInitials(final String str) {

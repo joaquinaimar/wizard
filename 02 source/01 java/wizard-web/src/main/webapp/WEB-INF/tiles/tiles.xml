@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions >
+<tiles-definitions>
+	<definition name="lib" template="/WEB-INF/tiles/lib.jsp">
+	</definition>
+	<definition name="*/*" extends="lib">
+		<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
+		<put-attribute name="script" value="/script/{1}/{2}.js"
+			type="string" />
+		<put-attribute name="style" value="/style/{1}/{2}.css"
+			type="string" />
+	</definition>
+	<definition name="*/*/*" extends="lib">
+		<put-attribute name="body" value="/WEB-INF/view/{1}/{2}/{3}.jsp" />
+		<put-attribute name="script" value="/script/{1}/{2}/{3}.js"
+			type="string" />
+		<put-attribute name="style" value="/style/{1}/{2}/{3}.css"
+			type="string" />
+	</definition>
+</tiles-definitions>

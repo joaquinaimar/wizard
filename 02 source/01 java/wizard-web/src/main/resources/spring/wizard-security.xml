@@ -12,15 +12,14 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/=anon
-				/wizardframework/Login/login.do=anon
-				/wizard/image/*.ico=anon
 				/lib/**=anon
-				/page/**=anon
+				/resource/**=anon
+				/script/**=anon
+				/style/**=anon
 				/jquery/**=anon
 				/jquery-ui/**=anon
 				/jquery-form/**=anon
 				/bootstrap/**=anon
-				/Test/**=anon
 				/**=authc
 			</value>
 		</property>
