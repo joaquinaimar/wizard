@@ -1,53 +1,84 @@
 Wizard = {
 	ajaxSubmit : function(form, option) {
-		var tagStr = '<div id="loading-overlay" class="wizard-overlay"></div>';
-		tagStr = tagStr
-				+ '<div class="alert alert-info wizard-loading"><div class="progress progress-striped active" style="margin-top:10px;">';
-		tagStr = tagStr
-				+ '<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;">';
-		tagStr = tagStr + '</div></div><div class="wizard-dialog-content">'
-				+ (option.loadstr || 'loading') + '...</div></div>';
+		var id = "loading-win-" + Math.floor(Math.random() * 1000000);
+		var tagStr = '<div id="' + id
+				+ '" class="modal fade" role="dialog" aria-hidden="true">';
+		tagStr += '<div class="modal-dialog">';
+		tagStr += '<div class="modal-content alert alert-info">';
+		tagStr += '<div class="modal-header">';
+		tagStr += '<div><h4>' + (option.loadstr || 'loading')
+				+ '···</h4></div>';
+		tagStr += '</div>';
+		tagStr += '<div class="modal-body">';
+		tagStr += '<div class="progress progress-striped active">';
+		tagStr += '<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;">';
+		tagStr += '</div>';
+		tagStr += '</div></div></div></div>';
 
 		$(document.body).append(tagStr);
-		$(".alert").alert();
+
+		$('#' + id).modal({
+			backdrop : 'static'
+		});
+
 		var success = option.success;
 		option.success = function(responseText, statusText, xhr) {
 			success(responseText, statusText, xhr);
-			$(".wizard-loading").remove();
-			$("#loading-overlay").remove();
+			$('#' + id).modal('hide');
+			setTimeout('$("#' + id + '").remove()', 2000);
 		};
 		option.error = option.error || function() {
-			$(".wizard-loading").remove();
-			$("#loading-overlay").remove();
-			Wizard.alert("异常", "与服务器通信异常！");
+			$('#' + id).modal('hide');
+			setTimeout('$("#' + id + '").remove()', 2000);
+			Wizard.alertDanger("异常", "与服务器通信异常！");
 		};
 
 		$(form).ajaxSubmit(option);
 	},
-	alert : function(title, content, fnClose) {
+	alertSuccess : function(title, content, fnClose) {
+		Wizard.alert(title, content, "success", fnClose);
+	},
+	alertInfo : function(title, content, fnClose) {
+		Wizard.alert(title, content, "info", fnClose);
+	},
+	alertWarning : function(title, content, fnClose) {
+		Wizard.alert(title, content, "warning", fnClose);
+	},
+	alertDanger : function(title, content, fnClose) {
+		Wizard.alert(title, content, "danger", fnClose);
+	},
+	alert : function(title, content, type, fnClose) {
 
+		var id = "alert-win-" + Math.floor(Math.random() * 1000000);
 		var options = {
 			fnClose : fnClose
 		};
 
-		var tagStr = '<div id="alert-overlay" class="wizard-overlay"></div>';
-		tagStr = tagStr
-				+ '<div class="alert alert-danger fade in wizard-dialog-win">';
-		tagStr = tagStr
-				+ '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-		tagStr = tagStr + '<h4 class="alert-heading">' + title + '</h4>';
-		tagStr = tagStr + '<div class="wizard-dialog-content">' + content
-				+ '</div></div>';
+		var tagStr = '<div id="' + id
+				+ '" class="modal fade" role="dialog" aria-hidden="true">';
+		tagStr += '<div class="modal-dialog wizard-alert">';
+		tagStr += '<div class="modal-content alert alert-' + (type || 'danger')
+				+ '">';
+		tagStr += '<div class="modal-header">';
+		tagStr += '<button type="button" class="close" data-dismiss="modal">&times; </button>';
+		tagStr += '<div><h4><span class="glyphicon glyphicon-warning-sign"></span>'
+				+ title + '</h4></div>';
+		tagStr += '</div>';
+		tagStr += '<div class="modal-body">';
+		tagStr += '<div>' + content + '</div>';
+		tagStr += '</div></div></div></div>';
 		$(document.body).append(tagStr);
 
-		$("[data-dismiss=alert]").click(function() {
-			$("#alert-overlay").remove();
-			if (fnClose) {
+		$("[data-dismiss=modal]").click(function() {
+			$('#' + id).modal('hide');
+			setTimeout('$("#' + id + '").remove()', 2000);
+			if (fnClose)
 				options.fnClose();
-			}
 		});
 
-		$(".alert").alert();
+		$('#' + id).modal({
+			backdrop : 'static'
+		});
 	}
 
 };
