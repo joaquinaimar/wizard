@@ -84,7 +84,7 @@ var addTabItem = function(name, path, flg) {
 	tabTitle.append(strTitle);
 
 	var tabBody = $("#tab-body");
-	tabBody.append("<div class='body-panel' id='" + id
+	tabBody.append("<div class='tab-pane fade' id='" + id
 			+ "'><iframe frameBorder='0' class='frame-style' src="
 			+ contextPath + "/" + path + "></iframe></div>");
 

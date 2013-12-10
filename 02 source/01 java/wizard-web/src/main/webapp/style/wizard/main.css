@@ -22,8 +22,8 @@
 	width: 12em;
 }
 
-.panel-heading > h4 {
-	font-weight:700;
+.panel-heading>h4 {
+	font-weight: 700;
 }
 
 #menu {
@@ -50,7 +50,7 @@
 	text-align: center;
 }
 
-.body-panel {
+.tab-pane {
 	position: absolute;
 	left: 0;
 	right: 0;

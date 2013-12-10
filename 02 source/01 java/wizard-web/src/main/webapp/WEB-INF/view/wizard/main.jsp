@@ -33,7 +33,7 @@
 	</div>
 	<div id="doc-tab">
 		<ul id="tab-title" class="nav nav-tabs"></ul>
-		<div id="tab-body"></div>
+		<div id="tab-body" class="tab-content"></div>
 	</div>
 </div>
 <div id="foot" class="panel-bg">
