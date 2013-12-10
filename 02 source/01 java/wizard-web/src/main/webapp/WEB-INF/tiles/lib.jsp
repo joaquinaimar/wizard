@@ -34,7 +34,7 @@
 	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/lib/jquery-ex.js"></script>
+	src="${pageContext.request.contextPath}/lib/scriptx.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/lib/wizard.css" />
 <script type="text/javascript"

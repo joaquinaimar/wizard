@@ -28,7 +28,7 @@
 	<mvc:resources mapping="/jquery-form/**"
 		location="classpath:/META-INF/resources/webjars/jquery-form/3.28.0-2013.02.06/" />
 	<mvc:resources mapping="/bootstrap/**"
-		location="classpath:/META-INF/resources/webjars/bootstrap/3.0.2/" />
+		location="classpath:/META-INF/resources/webjars/bootstrap/3.0.3/" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
@@ -84,7 +84,6 @@
 	<!-- 框架 -->
 	<mvc:view-controller path="/" view-name="wizard/login" />
 	<mvc:view-controller path="/main" view-name="wizard/main" />
-	<mvc:view-controller path="/menu" view-name="wizard/menu" />
-	<mvc:view-controller path="/homepage" view-name="wizard/homepage" />
+	<mvc:view-controller path="/wizard/homepage" />
 
 </beans>

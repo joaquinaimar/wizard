@@ -1,0 +1,75 @@
+#loginUser {
+	width: 10em;
+	text-align: center;
+}
+
+#doc {
+	position: absolute;
+	top: 4.5em;
+	right: 0;
+	bottom: 3.5em;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+#doc-menu {
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+	left: 0.5em;
+	bottom: 0;
+	width: 12em;
+}
+
+.panel-heading > h4 {
+	font-weight:700;
+}
+
+#menu {
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+	text-align: center;
+}
+
+#doc-tab {
+	position: absolute;
+	top: 0;
+	right: 0.5em;
+	bottom: 0;
+	left: 13em;
+	overflow: hidden;
+}
+
+#foot {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 3em;
+	text-align: center;
+}
+
+.body-panel {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 3em;
+	bottom: 0;
+}
+
+.frame-style {
+	height: 99%;
+	width: 100%;
+	margin: 0, 0, 0, 0
+}
+
+a.head {
+	font-weight: 700;
+	color: #999;
+}
+
+a.head:hover {
+	color: #428bca;
+	text-decoration: none;
+}
