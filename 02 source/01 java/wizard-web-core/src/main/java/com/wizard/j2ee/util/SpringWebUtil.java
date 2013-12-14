@@ -1,5 +1,6 @@
 package com.wizard.j2ee.util;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -8,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public final class SpringWebUtil {
@@ -146,6 +148,14 @@ public final class SpringWebUtil {
 	public static void setServletContextAttributeMap(
 			final Map<String, Object> map) {
 		WebUtil.setAttributeMap(getServletContext(), map);
+	}
+
+	public static List<FileItem> getFileItem(final long sizeMax) {
+		return WebUtil.getFileItem(request, sizeMax);
+	}
+
+	public static List<FileItem> getFileItem() {
+		return WebUtil.getFileItem(request);
 	}
 
 }

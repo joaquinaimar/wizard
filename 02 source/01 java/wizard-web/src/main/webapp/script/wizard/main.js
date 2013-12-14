@@ -15,6 +15,18 @@ $(document).ready(function() {
 			name : '系统维护2',
 			url : '40402'
 		} ]
+	}, {
+		id : '60',
+		name : '系统维护',
+		child : [ {
+			id : '60401',
+			name : '系统维护1',
+			url : '60401'
+		}, {
+			id : '60402',
+			name : '系统维护2',
+			url : '60402'
+		} ]
 	} ];
 	createMenu(menu);
 
@@ -30,9 +42,10 @@ var createMenu = function(menu) {
 
 	var menuTag = '';
 
-	for ( var i = 0; i < menu.length; i++) {
+	for (var i = 0; i < menu.length; i++) {
 		menuTag += '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title">';
-		menuTag += '<a class="head" href="#menu' + menu[i].id + '" data-toggle="collapse" ';
+		menuTag += '<a class="head" href="#menu' + menu[i].id
+				+ '" data-toggle="collapse" ';
 		if (menu[i].child && menu[i].child instanceof Array)
 			menuTag += '';
 		else if (menu[i].url)
@@ -44,15 +57,17 @@ var createMenu = function(menu) {
 		if (menu[i].child && menu[i].child instanceof Array) {
 			menuTag += '<div id="menu' + menu[i].id
 					+ '" class="panel-collapse collapse">';
-			menuTag += '<div class="list-group">';
-			for ( var j = 0; j < menu[i].child.length; j++) {
-				menuTag += '<a href="#" class="list-group-item list-group-item-warning" onclick="addTabItem(\''
-						+ menu[i].child[j].name + '\', \''
-						+ menu[i].child[j].url + '\');" >'
+			for (var j = 0; j < menu[i].child.length; j++) {
+				menuTag += '<a href="#" class="list-group-item" onclick="addTabItem(\''
+						+ menu[i].child[j].name
+						+ '\', \''
+						+ menu[i].child[j].url
+						+ '\');" >'
 						+ menu[i].child[j].name + '</a>';
 			}
-			menuTag += '</div></div>';
+			menuTag += '</div>';
 		}
+		menuTag += '</div>';
 	}
 	$('#menu').append(menuTag);
 };

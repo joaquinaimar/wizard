@@ -2,6 +2,7 @@ package com.wizard.j2ee.util;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,6 +11,11 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public final class WebUtil {
 
@@ -201,6 +207,23 @@ public final class WebUtil {
 			final Map<String, Object> map) {
 		for (String key : map.keySet())
 			setAttribute(servletContext, key, map.get(key));
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<FileItem> getFileItem(final HttpServletRequest request,
+			final long sizeMax) {
+		ServletFileUpload fileupload = new ServletFileUpload(
+				new DiskFileItemFactory());
+		fileupload.setSizeMax(sizeMax <= 0 ? -1 : sizeMax);
+		try {
+			return fileupload.parseRequest(request);
+		} catch (FileUploadException e) {
+			return null;
+		}
+	}
+
+	public static List<FileItem> getFileItem(final HttpServletRequest request) {
+		return getFileItem(request, 0);
 	}
 
 }

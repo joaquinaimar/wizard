@@ -25,7 +25,7 @@
 	</div>
 </header>
 <div id="doc">
-	<div id="doc-menu" class="panel-bg">
+	<div id="doc-menu" class="well well-sm">
 		<div class="panel-heading">
 			<h4>菜单</h4>
 		</div>
@@ -36,6 +36,6 @@
 		<div id="tab-body" class="tab-content"></div>
 	</div>
 </div>
-<div id="foot" class="panel-bg">
+<div id="foot" class="well well-sm">
 	<h4>版权所有</h4>
 </div>
