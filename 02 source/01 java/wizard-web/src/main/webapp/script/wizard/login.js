@@ -1,4 +1,6 @@
 $(function(){
+	$("#username")[0].value ="zhanglizhi";
+	$("#password")[0].value = "042888";
     $("#btnLogin").bind("click", funLogin);
 });
 

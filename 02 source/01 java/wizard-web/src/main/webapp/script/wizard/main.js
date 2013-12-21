@@ -1,36 +1,6 @@
 $(document).ready(function() {
-	var menu = [ {
-		id : '20',
-		name : '首页',
-		url : 'wizard/homepage'
-	}, {
-		id : '40',
-		name : '系统维护',
-		child : [ {
-			id : '40401',
-			name : '系统维护1',
-			url : '40401'
-		}, {
-			id : '40402',
-			name : '系统维护2',
-			url : '40402'
-		} ]
-	}, {
-		id : '60',
-		name : '系统维护',
-		child : [ {
-			id : '60401',
-			name : '系统维护1',
-			url : '60401'
-		}, {
-			id : '60402',
-			name : '系统维护2',
-			url : '60402'
-		} ]
-	} ];
-	createMenu(menu);
-
-	addTabItem("首页", "wizard/homepage", true);
+	getMenu();
+	getHomePage();
 	$("#btnLogout").bind("click", funLogout);
 });
 
@@ -84,11 +54,11 @@ var addTabItem = function(name, path, flg) {
 
 	var tabTitle = $("#tab-title");
 
-	var liwidth = (name.length * 18) + 26;
+	var liwidth = (name.length * 1) + 3;
 
-	liwidth = flg ? liwidth : (liwidth + 3);
+	liwidth = flg ? liwidth : (liwidth + 1);
 
-	var strTitle = "<li style='width:" + liwidth + "px;'><a href='#" + id
+	var strTitle = "<li style='width:" + liwidth + "em;'><a href='#" + id
 			+ "' data-toggle='tab'>" + name;
 	if (!flg) {
 		strTitle = strTitle + "<button class='close' onClick='removeTabItem(\""
@@ -122,10 +92,37 @@ var removeTabItem = function(id) {
 
 };
 
+var getMenu = function() {
+	Wizard.ajax({
+		type : "post",
+		dataType : "json",
+		url : contextPath + "/wizard/menu/getMenu.do",
+		success : function(obj) {
+			var data = obj.data;
+			if (data)
+				createMenu(data);
+		}
+	});
+};
+
+var getHomePage = function() {
+
+	Wizard.ajax({
+		type : "post",
+		dataType : "json",
+		url : contextPath + "/wizard/menu/getHomePage.do",
+		success : function(obj) {
+			var data = obj.data;
+			if (data)
+				addTabItem(data.name, data.url, true);
+		}
+	});
+};
+
 var funLogout = function() {
 	$.ajax({
 		type : "post",
-		url : contextPath + "/wizardframework/login/logout.do",
+		url : contextPath + "/wizard/login/logout.do",
 		success : function(msg) {
 			if ("logout" === msg)
 				location.href = contextPath + "/";

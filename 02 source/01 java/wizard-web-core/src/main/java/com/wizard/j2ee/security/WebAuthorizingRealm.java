@@ -39,7 +39,8 @@ public class WebAuthorizingRealm extends AuthorizingRealm {
 					name, String.valueOf(token.getPassword()));
 			if (!CommonUtil.isNull(authentication)) {
 				SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
-						authentication, authentication.getPassword(), getName());
+						authentication, authentication.getPassword(),
+						authentication.getDetail());
 				return info;
 			}
 		}

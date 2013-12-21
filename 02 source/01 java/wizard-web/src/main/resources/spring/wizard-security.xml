@@ -20,7 +20,7 @@
 				/jquery-ui/**=anon
 				/jquery-form/**=anon
 				/bootstrap/**=anon
-				/wizardframework/login/login.do=anon
+				/wizard/login/login.do=anon
 				/**=authc
 			</value>
 		</property>

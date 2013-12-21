@@ -6,6 +6,8 @@ public class Authentication {
 
 	private String password = null;
 
+	private String detail = null;
+
 	private Role[] roles = null;
 
 	public String getName() {
@@ -22,6 +24,14 @@ public class Authentication {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 	public Role[] getRoles() {

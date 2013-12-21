@@ -2,7 +2,7 @@
 <header class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="<%=application.getContextPath()%>/main">Wizard</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/main">Wizard</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -14,13 +14,12 @@
 					</ul></li>
 			</ul>
 			<form class="navbar-form navbar-right">
-				<div class="form-group">
-					<label for="loginUser" class="navbar-link">用户名： </label> <input
-						id="loginUser" type="text" class="form-control" value="Admin"
-						readonly />
-				</div>
-				<button id="btnLogout" type="button" class="btn btn-default">退出</button>
+				<button id="btnLoginUser" type="button" class="btn btn-default"
+					data-toggle="popover" data-placement="bottom" title="用户详细信息"
+					data-content="${sessionScope.loginInfo.detail}">${sessionScope.loginInfo.username}</button>
+				<button id="btnLogout" type="button" class="btn btn-warning">退出</button>
 			</form>
+			<p class="navbar-text navbar-right">用户名：</p>
 		</div>
 	</div>
 </header>

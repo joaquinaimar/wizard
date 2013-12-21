@@ -1,6 +1,12 @@
 .wizard-alert {
 	width: 300px;
 }
+.modal{
+	overflow: hidden;
+}
+.modal-backdrop{
+	overflow: hidden;
+}
 
 /* bootstrap */
 

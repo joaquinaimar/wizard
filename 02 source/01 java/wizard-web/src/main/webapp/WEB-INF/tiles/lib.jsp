@@ -11,47 +11,47 @@
 <link rel="Shortcut Icon"
 	href="${pageContext.request.contextPath}/resource/image/wizard-small.ico" />
 
-<!-- jquery -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
-
 <!-- jquery-ui -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/jquery-ui/themes/base/minified/jquery-ui.min.css" />
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-
-<!-- jquery-form -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/jquery-form/jquery.form.js"></script>
-
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/lib/scriptx.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/lib/wizard.css" />
+<!-- common -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/style/common.css" />
+<!-- custom -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}<tiles:insertAttribute name="style" />">
+
+<!-- jquery -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+<!-- jquery-ui -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<!-- jquery-form -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-form/jquery.form.js"></script>
+<!-- bootstrap -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/lib/scriptx.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/lib/wizard.js"></script>
-
 <!-- common -->
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 </script>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/style/common.css" />
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/script/common.js"></script>
 
 <!-- custom -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}<tiles:insertAttribute name="style" />">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}<tiles:insertAttribute name="script" />"></script>
 

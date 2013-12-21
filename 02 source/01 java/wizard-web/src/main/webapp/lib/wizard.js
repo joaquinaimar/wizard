@@ -1,13 +1,31 @@
 Wizard = {
 	ajaxSubmit : function(form, option) {
+		if (option.loadstr)
+			var id = Wizard.createLoadingWin(option.loadstr);
+		var success = option.success;
+		option.success = function(responseText, statusText, xhr) {
+			if (option.loadstr)
+				success(responseText, statusText, xhr);
+			Wizard.removeLoadingWin(id);
+		};
+		option.error = option.error || function() {
+			if (option.loadstr)
+				Wizard.removeLoadingWin(id);
+			Wizard.alertDanger("异常", "与服务器通信异常！");
+		};
+		$(form).ajaxSubmit(option);
+	},
+	ajax : function(option) {
+		$.ajax(option);
+	},
+	createLoadingWin : function(loadstr) {
 		var id = "loading-win-" + Math.floor(Math.random() * 1000000);
 		var tagStr = '<div id="' + id
 				+ '" class="modal fade" role="dialog" aria-hidden="true">';
 		tagStr += '<div class="modal-dialog">';
 		tagStr += '<div class="modal-content alert alert-info">';
 		tagStr += '<div class="modal-header">';
-		tagStr += '<div><h4>' + (option.loadstr || 'loading')
-				+ '···</h4></div>';
+		tagStr += '<div><h4>' + (loadstr || 'loading') + '···</h4></div>';
 		tagStr += '</div>';
 		tagStr += '<div class="modal-body">';
 		tagStr += '<div class="progress progress-striped active">';
@@ -20,20 +38,10 @@ Wizard = {
 		$('#' + id).modal({
 			backdrop : 'static'
 		});
-
-		var success = option.success;
-		option.success = function(responseText, statusText, xhr) {
-			success(responseText, statusText, xhr);
-			$('#' + id).modal('hide');
-			setTimeout('$("#' + id + '").remove()', 2000);
-		};
-		option.error = option.error || function() {
-			$('#' + id).modal('hide');
-			setTimeout('$("#' + id + '").remove()', 2000);
-			Wizard.alertDanger("异常", "与服务器通信异常！");
-		};
-
-		$(form).ajaxSubmit(option);
+	},
+	removeLoadingWin : function(id) {
+		$('#' + id).modal('hide');
+		setTimeout('$("#' + id + '").remove()', 2000);
 	},
 	alertSuccess : function(title, content, fnClose) {
 		Wizard.alert(title, content, "success", fnClose);

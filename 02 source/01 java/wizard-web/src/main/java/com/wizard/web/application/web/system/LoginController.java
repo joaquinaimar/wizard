@@ -15,7 +15,7 @@ import com.wizard.web.application.service.system.ILoginService;
 import com.wizard.web.application.vo.system.LoginVo;
 
 @Controller
-@RequestMapping("wizardframework/login")
+@RequestMapping("wizard/login")
 public class LoginController {
 
 	@Autowired
@@ -24,9 +24,11 @@ public class LoginController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseVo<Boolean> login(@ModelAttribute LoginVo loginVo) {
-		if (!loginService.login(loginVo)) {
+		if (!this.loginService.login(loginVo)) {
 			return new ResponseVo<Boolean>(true, false);
 		} else {
+			SpringWebUtil.setSessionAttribute("loginInfo",
+					this.loginService.getLoginInfo(loginVo));
 			return new ResponseVo<Boolean>(true, true);
 		}
 

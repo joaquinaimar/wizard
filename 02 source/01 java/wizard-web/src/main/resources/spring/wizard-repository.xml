@@ -63,7 +63,7 @@
 	<!-- 采用@Transactional注解方式使用事务 -->
 	<tx:annotation-driven transaction-manager="txManager" />
 
-	<context:component-scan base-package="com.wizard.web.applicate.dao"
+	<context:component-scan base-package="com.wizard.web.application.dao"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
