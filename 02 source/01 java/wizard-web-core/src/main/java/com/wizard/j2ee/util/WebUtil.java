@@ -1,5 +1,6 @@
 package com.wizard.j2ee.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
@@ -16,6 +17,12 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+
+import com.wizard.j2ee.domain.FileVo;
+import com.wizard.util.file.FileUtil;
 
 public final class WebUtil {
 
@@ -225,6 +232,16 @@ public final class WebUtil {
 	public static List<FileItem> getFileItem(final HttpServletRequest request) {
 		return getFileItem(request, 0);
 	}
-	
+
+	public static FileVo downloadFile(byte[] body, String fileName) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		headers.setContentDispositionFormData("attachment", fileName);
+		return new FileVo(body, headers, HttpStatus.CREATED);
+	}
+
+	public static FileVo downloadFile(File file) {
+		return downloadFile(FileUtil.getFileData(file), file.getName());
+	}
 
 }
