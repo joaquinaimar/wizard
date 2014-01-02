@@ -1,6 +1,13 @@
 package com.wizard.j2ee.security.info;
 
-public class Authentication {
+import java.io.Serializable;
+
+public class Authentication implements Serializable  {
+
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -8344034076380593620L;
 
 	private String name = null;
 

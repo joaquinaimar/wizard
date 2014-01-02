@@ -86,4 +86,6 @@
 	<mvc:view-controller path="/main" view-name="wizard/main" />
 	<mvc:view-controller path="/wizard/homepage" />
 
+	<mvc:view-controller path="/wizard/manage/user-manage" />
+	
 </beans>

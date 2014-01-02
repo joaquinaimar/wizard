@@ -1,6 +1,13 @@
 package com.wizard.j2ee.security.info;
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission implements Serializable {
+
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -3432495223332284705L;
 
 	private String name = null;
 

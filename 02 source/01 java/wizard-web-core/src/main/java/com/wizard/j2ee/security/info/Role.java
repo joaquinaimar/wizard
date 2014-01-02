@@ -1,6 +1,13 @@
 package com.wizard.j2ee.security.info;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
+
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 6150772447950464875L;
 
 	private String name = null;
 

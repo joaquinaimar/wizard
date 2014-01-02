@@ -1,15 +1,16 @@
 Wizard = {
 	ajaxSubmit : function(form, option) {
+		var id;
 		if (option.loadstr)
-			var id = Wizard.createLoadingWin(option.loadstr);
+			id = Wizard.createLoadingWin(option.loadstr);
 		var success = option.success;
 		option.success = function(responseText, statusText, xhr) {
-			if (option.loadstr)
-				success(responseText, statusText, xhr);
-			Wizard.removeLoadingWin(id);
+			success(responseText, statusText, xhr);
+			if (id)
+				Wizard.removeLoadingWin(id);
 		};
 		option.error = option.error || function() {
-			if (option.loadstr)
+			if (id)
 				Wizard.removeLoadingWin(id);
 			Wizard.alertDanger("异常", "与服务器通信异常！");
 		};
@@ -38,6 +39,7 @@ Wizard = {
 		$('#' + id).modal({
 			backdrop : 'static'
 		});
+		return id;
 	},
 	removeLoadingWin : function(id) {
 		$('#' + id).modal('hide');

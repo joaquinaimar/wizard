@@ -54,7 +54,7 @@ var addTabItem = function(name, path, flg) {
 
 	var tabTitle = $("#tab-title");
 
-	var liwidth = (name.length * 1) + 3;
+	var liwidth = (name.length * 1) + 2.5;
 
 	liwidth = flg ? liwidth : (liwidth + 1);
 

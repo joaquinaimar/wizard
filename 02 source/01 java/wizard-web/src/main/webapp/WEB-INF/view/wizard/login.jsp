@@ -57,7 +57,7 @@
 		</div>
 		<div class="col-md-4 col-md-offset-1">
 			<form id="loginForm" class="form-signin" method="post"
-				action="wizard/login/login.do">
+				action="${pageContext.request.contextPath}/wizard/login/login.do">
 				<fieldset>
 					<legend>
 						<h3>请登录</h3>
