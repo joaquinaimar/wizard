@@ -56,23 +56,23 @@
 			</div>
 		</div>
 		<div class="col-md-4 col-md-offset-1">
-			<form id="loginForm" class="form-signin" method="post"
+			<form id="loginForm" class="form-signin form-horizontal" method="post"
 				action="${pageContext.request.contextPath}/wizard/login/login.do">
 				<fieldset>
 					<legend>
 						<h3>请登录</h3>
 					</legend>
-					<div class="form-row">
+					<div class="form-group">
 						<label for="username"><h4>用户名:</h4></label><input type="text" id="username"
 							name="username" class="form-control" placeholder="用户名"
 							autocomplete="off" />
 					</div>
-					<div class="form-row">
+					<div class="form-group">
 						<label for="password"><h4>密码:</h4></label> <input type="password"
 							id="password" name="password" class="form-control"
 							placeholder="密码" autocomplete="off" />
 					</div>
-					<div class="form-row">
+					<div class="form-group">
 						<button id="btnLogin" class="btn btn-primary" type="button">登录</button>
 						<button id="btnReset" class="btn btn-primary" type="reset">重置</button>
 					</div>

@@ -53,6 +53,8 @@ public final class CommonUtil {
 	}
 
 	public static <X> Collection<X> changeArrayToList(final X[] array) {
+		if (isNull(array))
+			return null;
 		Collection<X> list = new ArrayList<X>(array.length);
 		for (X x : array)
 			list.add(x);

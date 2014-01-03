@@ -24,7 +24,36 @@
 				<h4 class="modal-title">用户信息管理</h4>
 			</div>
 			<div class="modal-body">
-				<form id="manageForm" class="form-manage" method="post"></form>
+				<form id="updateForm" class="form-horizontal form-update"
+					method="post"
+					action="${pageContext.request.contextPath}/wizard/manage/user-manager/updateUser.do">
+					<input type="hidden" name="oldPassword" class="form-control">
+					<div class="form-group">
+						<div class="input-group col-md-6 col-md-offset-2">
+							<span class="input-group-addon">用户名</span> <input type="text"
+								name="username" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group col-md-6 col-md-offset-2">
+							<span class="input-group-addon">新密码</span> <input type="password"
+								name="newPassword" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group col-md-6 col-md-offset-2">
+							<span class="input-group-addon">确认密码</span> <input
+								type="password" name="confirmPassword" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group col-md-8 col-md-offset-2">
+							<span class="input-group-addon">详细信息</span>
+							<textarea name="userDetail" class="form-control no-resize"
+								rows="5"></textarea>
+						</div>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button id="btnSave" class="btn btn-primary" type="button">保存</button>

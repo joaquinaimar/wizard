@@ -76,9 +76,13 @@ public final class BeanUtil {
 			List<Field> list = new ArrayList<Field>();
 			list.addAll(CommonUtil.changeArrayToList(fields));
 			Class<?> superClass = getSuperclass(cls);
-			if (!CommonUtil.isNull(superClass))
-				list.addAll(CommonUtil.changeArrayToList(getDeclaredFields(
-						superClass, IsSuperClass)));
+			if (!CommonUtil.isNull(superClass)) {
+				Collection<Field> superFileds = CommonUtil
+						.changeArrayToList(getDeclaredFields(superClass,
+								IsSuperClass));
+				if (!CommonUtil.isNull(superFileds))
+					list.addAll(superFileds);
+			}
 			return CommonUtil.changeListToArray(list);
 		} else {
 			return fields;

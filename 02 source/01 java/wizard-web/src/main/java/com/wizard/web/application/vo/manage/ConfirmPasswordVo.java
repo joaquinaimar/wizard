@@ -1,6 +1,6 @@
 package com.wizard.web.application.vo.manage;
 
-public class ConfirmVo {
+public class ConfirmPasswordVo {
 
 	private String password = null;
 

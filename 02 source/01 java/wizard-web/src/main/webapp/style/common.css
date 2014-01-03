@@ -4,3 +4,11 @@
 	border-color: #463265;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .1);
 }
+
+.form-row {
+	padding-top: 0.5em;
+}
+
+textarea.no-resize{
+	resize:none;
+}
