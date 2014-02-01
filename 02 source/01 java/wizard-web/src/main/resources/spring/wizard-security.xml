@@ -16,10 +16,7 @@
 				/resource/**=anon
 				/script/**=anon
 				/style/**=anon
-				/jquery/**=anon
-				/jquery-ui/**=anon
-				/jquery-form/**=anon
-				/bootstrap/**=anon
+				/webjars/**=anon
 				/wizard/login/login.do=anon
 				/**=authc
 			</value>

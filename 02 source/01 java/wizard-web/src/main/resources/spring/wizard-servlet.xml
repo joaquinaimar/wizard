@@ -21,14 +21,16 @@
 	<mvc:resources mapping="/resource/**" location="/resource/" />
 	<mvc:resources mapping="/script/**" location="/script/" />
 	<mvc:resources mapping="/style/**" location="/style/" />
-	<mvc:resources mapping="/jquery/**"
+	<mvc:resources mapping="/webjars/jquery/**"
 		location="classpath:/META-INF/resources/webjars/jquery/2.0.3/" />
-	<mvc:resources mapping="/jquery-ui/**"
+	<mvc:resources mapping="/webjars/jquery-ui/**"
 		location="classpath:/META-INF/resources/webjars/jquery-ui/1.10.3/" />
-	<mvc:resources mapping="/jquery-form/**"
+	<mvc:resources mapping="/webjars/jquery-form/**"
 		location="classpath:/META-INF/resources/webjars/jquery-form/3.28.0-2013.02.06/" />
-	<mvc:resources mapping="/bootstrap/**"
+	<mvc:resources mapping="/webjars/bootstrap/**"
 		location="classpath:/META-INF/resources/webjars/bootstrap/3.0.3/" />
+	<mvc:resources mapping="/webjars/datatables/**"
+		location="classpath:/META-INF/resources/webjars/datatables/1.9.4/" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
@@ -87,5 +89,7 @@
 	<mvc:view-controller path="/wizard/homepage" />
 
 	<mvc:view-controller path="/wizard/manage/user-manage" />
-	
+
+	<mvc:view-controller path="wizard/maintain/code-maintain" />
+
 </beans>

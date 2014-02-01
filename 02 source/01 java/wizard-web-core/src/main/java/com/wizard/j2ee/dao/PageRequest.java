@@ -8,6 +8,10 @@ public class PageRequest {
 	protected int start = 0;
 	protected int limit = 0;
 
+	protected String[] sortCols = null;
+
+	protected String[] sortTypes = null;
+
 	public int getStart() {
 		return start;
 	}
@@ -35,4 +39,21 @@ public class PageRequest {
 	public int getEnd() {
 		return start + limit;
 	}
+
+	public String[] getSortCols() {
+		return sortCols;
+	}
+
+	public void setSortCols(String[] sortCols) {
+		this.sortCols = sortCols;
+	}
+
+	public String[] getSortTypes() {
+		return sortTypes;
+	}
+
+	public void setSortTypes(String[] sortTypes) {
+		this.sortTypes = sortTypes;
+	}
+
 }

@@ -13,12 +13,20 @@
 
 <!-- jquery-ui -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/jquery-ui/themes/base/minified/jquery-ui.min.css" />
+	href="${pageContext.request.contextPath}/webjars/jquery-ui/themes/base/minified/jquery-ui.min.css" />
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-theme.min.css" />
+	href="${pageContext.request.contextPath}/webjars/bootstrap/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" />
+	href="${pageContext.request.contextPath}/webjars/bootstrap/css/bootstrap.min.css" />
+<!-- bootstrap -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/webjars/datatables/media/css/jquery.dataTables.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/webjars/datatables/media/css/jquery.dataTables_themeroller.css" />
+<!-- expand -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/lib/dataTables-bootstrap/DT_bootstrap.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/lib/wizard.css" />
 <!-- common -->
@@ -30,16 +38,21 @@
 
 <!-- jquery -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+	src="${pageContext.request.contextPath}/webjars/jquery/jquery.min.js"></script>
 <!-- jquery-ui -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	src="${pageContext.request.contextPath}/webjars/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <!-- jquery-form -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/jquery-form/jquery.form.js"></script>
+	src="${pageContext.request.contextPath}/webjars/jquery-form/jquery.form.js"></script>
 <!-- bootstrap -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/webjars/datatables/media/js/jquery.dataTables.min.js"></script>
+<!-- expand -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/lib/dataTables-bootstrap/DT_bootstrap.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/lib/scriptx.js"></script>
 <script type="text/javascript"
