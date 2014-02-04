@@ -19,14 +19,12 @@
 	href="${pageContext.request.contextPath}/webjars/bootstrap/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/webjars/bootstrap/css/bootstrap.min.css" />
-<!-- bootstrap -->
+<!-- datatables -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/webjars/datatables/media/css/jquery.dataTables.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/webjars/datatables/media/css/jquery.dataTables_themeroller.css" />
 <!-- expand -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/lib/dataTables-bootstrap/DT_bootstrap.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/lib/wizard.css" />
 <!-- common -->
@@ -48,11 +46,15 @@
 <!-- bootstrap -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
+<!-- datatables -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/webjars/datatables/media/js/jquery.dataTables.min.js"></script>
-<!-- expand -->
+<!-- highcharts -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/lib/dataTables-bootstrap/DT_bootstrap.js"></script>
+	src="${pageContext.request.contextPath}/webjars/highcharts/highcharts.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/webjars/highcharts/highcharts-more.js"></script>
+<!-- expand -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/lib/scriptx.js"></script>
 <script type="text/javascript"

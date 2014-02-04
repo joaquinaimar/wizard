@@ -20,7 +20,21 @@ Wizard = {
 	ajax : function(option) {
 		$.ajax(option);
 	},
-	ajaxDataTable : function(dataTable, option) {
+	ajaxDataTable : function(dataTable, opt) {
+		var html,option;
+		if (Wizard.dataTablesCache && Wizard.dataTablesCache[dataTable]) {
+			var oldOption = Wizard.dataTablesCache[dataTable].option;
+			if (opt)
+				for (var o in opt) {
+					oldOption[o] = opt[o];
+				}
+			$(dataTable).parent().replaceWith(Wizard.dataTablesCache[dataTable].html);
+			html = Wizard.dataTablesCache[dataTable].html;
+			option = oldOption;
+		} else {
+			html = $(dataTable)[0].outerHTML;
+			option = opt;
+		}
 		if (option.fields) {
 			var columns = [];
 			var thead = '<thead>';
@@ -50,7 +64,8 @@ Wizard = {
 			thead += '</thead>';
 		}
 
-		$(dataTable).append(thead);
+		if ($(dataTable + ":has(thead)").length === 0)
+			$(dataTable).append(thead);
 
 		var language = {
 			sProcessing : "处理中...",
@@ -164,6 +179,13 @@ Wizard = {
 				}
 			}
 		});
+
+		if (!Wizard.dataTablesCache)
+			Wizard.dataTablesCache = {};
+		Wizard.dataTablesCache[dataTable] = {
+			option : option,
+			html : html
+		};
 	},
 	createLoadingWin : function(loadstr) {
 		var id = "loading-win-" + Math.floor(Math.random() * 1000000);

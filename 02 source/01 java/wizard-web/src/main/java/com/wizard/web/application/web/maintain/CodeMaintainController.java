@@ -20,6 +20,15 @@ public class CodeMaintainController {
 	@Autowired
 	private ICodeMaintainService codeMaintainService = null;
 
+	@RequestMapping(value = "/getCodeTypeList.do", method = RequestMethod.GET)
+	@ResponseBody
+	public PageResponseVo<WizardCode> getCodeTypeList(CodeInfoVo codeInfo,
+			PageRequest request) {
+		PageResponse<WizardCode> page = codeMaintainService.getCodeTypeList(
+				codeInfo, request);
+		return new PageResponseVo<WizardCode>(true, page);
+	}
+
 	@RequestMapping(value = "/getCodeInfoList.do", method = RequestMethod.GET)
 	@ResponseBody
 	public PageResponseVo<WizardCode> getCodeInfoList(CodeInfoVo codeInfo,

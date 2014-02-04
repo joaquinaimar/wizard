@@ -19,6 +19,12 @@ public class CodeMaintainServiceImpl implements ICodeMaintainService {
 	private CodeMaintainDao codeMaintainDao = null;
 
 	@Override
+	public PageResponse<WizardCode> getCodeTypeList(CodeInfoVo codeInfo,
+			PageRequest request) {
+		return codeMaintainDao.getCodeTypeList(codeInfo, request);
+	}
+	
+	@Override
 	public PageResponse<WizardCode> getCodeInfoList(CodeInfoVo codeInfo,
 			PageRequest request) {
 		return codeMaintainDao.getCodeInfoList(codeInfo, request);

@@ -7,6 +7,9 @@ import com.wizard.web.domain.entity.wizard.WizardCode;
 
 public interface ICodeMaintainService {
 
+	PageResponse<WizardCode> getCodeTypeList(CodeInfoVo codeInfo,
+			PageRequest request);
+	
 	PageResponse<WizardCode> getCodeInfoList(CodeInfoVo codeInfo,
 			PageRequest request);
 

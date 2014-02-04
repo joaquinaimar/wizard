@@ -31,6 +31,8 @@
 		location="classpath:/META-INF/resources/webjars/bootstrap/3.0.3/" />
 	<mvc:resources mapping="/webjars/datatables/**"
 		location="classpath:/META-INF/resources/webjars/datatables/1.9.4/" />
+	<mvc:resources mapping="/webjars/highcharts/**"
+		location="classpath:/META-INF/resources/webjars/highcharts/3.0.7/" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
@@ -91,5 +93,7 @@
 	<mvc:view-controller path="/wizard/manage/user-manage" />
 
 	<mvc:view-controller path="wizard/maintain/code-maintain" />
+	
+	<mvc:view-controller path="wizard/demo/highcharts-demo" />
 
 </beans>

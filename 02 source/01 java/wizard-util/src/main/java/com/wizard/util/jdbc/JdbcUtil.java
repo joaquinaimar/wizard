@@ -315,4 +315,16 @@ public final class JdbcUtil {
 		}
 	}
 
+	public static String like(String str) {
+		return "%".concat(str).concat("%");
+	}
+
+	public static String startLike(String str) {
+		return "%".concat(str);
+	}
+
+	public static String endLike(String str) {
+		return str.concat("%");
+	}
+
 }
