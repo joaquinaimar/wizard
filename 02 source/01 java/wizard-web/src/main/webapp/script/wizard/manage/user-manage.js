@@ -27,7 +27,7 @@ var funConfirm = function() {
 var funGetUserInfo = function() {
 	Wizard
 			.ajax({
-				type : "post",
+				type : "POST",
 				dataType : "json",
 				url : contextPath
 						+ "/wizard/manage/user-manager/getUserInfoById.do",

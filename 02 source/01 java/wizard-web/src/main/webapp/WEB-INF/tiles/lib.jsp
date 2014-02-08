@@ -26,6 +26,8 @@
 	href="${pageContext.request.contextPath}/webjars/datatables/media/css/jquery.dataTables_themeroller.css" />
 <!-- expand -->
 <link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/lib/datatablesx/datatablesx.css" />
+<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/lib/wizard.css" />
 <!-- common -->
 <link rel="stylesheet" type="text/css"
@@ -55,6 +57,8 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/webjars/highcharts/highcharts-more.js"></script>
 <!-- expand -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/lib/datatablesx/datatablesx.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/lib/scriptx.js"></script>
 <script type="text/javascript"

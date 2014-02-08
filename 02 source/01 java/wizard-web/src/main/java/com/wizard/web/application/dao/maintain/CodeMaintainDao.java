@@ -1,6 +1,7 @@
 package com.wizard.web.application.dao.maintain;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +33,25 @@ public class CodeMaintainDao extends HibernateBaseDao {
 		Criteria criteria = super.createCriteria(WizardCode.class);
 		criteria.add(Restrictions.eq("typeId", codeInfo.getTypeId()));
 		return super.pageQueryOrder(criteria, request);
+	}
+
+	public int updateCode(CodeInfoVo codeInfo) {
+		String hql = "UPDATE WizardCode SET content = :content WHERE pkId = :pkId ";
+		return super.updateByHql(hql, codeInfo);
+	}
+
+	public int deleteCodeByTypeId(String id) {
+		String hql = "DELETE WizardCode WHERE typeId = :typeId ";
+		Query query = super.createQuery(hql);
+		query.setParameter("typeId", id);
+		return query.executeUpdate();
+	}
+
+	public int deleteCodeById(String[] ids) {
+		String hql = "DELETE WizardCode WHERE pkId in ( :pkId ) ";
+		Query query = super.createQuery(hql);
+		query.setParameterList("pkId", ids);
+		return query.executeUpdate();
 	}
 
 }

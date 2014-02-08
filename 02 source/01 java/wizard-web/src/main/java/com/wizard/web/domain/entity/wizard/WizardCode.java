@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -13,7 +12,6 @@ import javax.persistence.Table;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.wizard.j2ee.dao.EntityTemplate;
 
@@ -29,8 +27,6 @@ public class WizardCode extends EntityTemplate {
 	private static final long serialVersionUID = 5385713154001386403L;
 
 	@Id
-	@GenericGenerator(name = "generator", strategy = "uuid")
-	@GeneratedValue(generator = "generator")
 	@Column(name = "PK_ID")
 	private String pkId = null;
 

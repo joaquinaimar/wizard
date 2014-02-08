@@ -2,9 +2,19 @@ package com.wizard.web.application.vo.maintain;
 
 public class CodeInfoVo {
 
+	private String pkId = null;
+
 	private String typeId = null;
 
 	private String content = null;
+
+	public String getPkId() {
+		return pkId;
+	}
+
+	public void setPkId(String pkId) {
+		this.pkId = pkId;
+	}
 
 	public String getTypeId() {
 		return typeId;
