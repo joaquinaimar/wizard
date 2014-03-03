@@ -11,6 +11,7 @@ import com.wizard.util.common.CommonUtil;
  * 
  */
 public class CxfClient {
+
 	public static void main(String[] args) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext(

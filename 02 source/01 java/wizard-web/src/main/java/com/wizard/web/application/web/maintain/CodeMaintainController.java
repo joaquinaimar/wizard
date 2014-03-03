@@ -1,5 +1,8 @@
 package com.wizard.web.application.web.maintain;
 
+import java.util.List;
+
+import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +15,7 @@ import com.wizard.j2ee.dao.PageRequest;
 import com.wizard.j2ee.dao.PageResponse;
 import com.wizard.j2ee.domain.PageResponseVo;
 import com.wizard.j2ee.domain.ResponseVo;
+import com.wizard.j2ee.util.SpringWebUtil;
 import com.wizard.web.application.service.maintain.ICodeMaintainService;
 import com.wizard.web.application.vo.maintain.CodeInfoVo;
 import com.wizard.web.domain.entity.wizard.WizardCode;
@@ -61,7 +65,7 @@ public class CodeMaintainController {
 		int result = codeMaintainService.updateCode(codeInfo);
 		return new ResponseVo<>(true, result);
 	}
-	
+
 	@RequestMapping(value = "/deleteTypeById.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseVo<Integer> deleteTypeById(@RequestParam String[] ids) {
@@ -74,6 +78,14 @@ public class CodeMaintainController {
 	public ResponseVo<Integer> deleteCodeById(@RequestParam String[] ids) {
 		int result = codeMaintainService.deleteCodeById(ids);
 		return new ResponseVo<>(true, result);
+	}
+
+	@RequestMapping(value = "/batchUpdate.do", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseVo<?> batchUpdate() {
+		List<FileItem> fileItems = SpringWebUtil.getFileItem();
+		System.err.println("====================" + fileItems.size());
+		return new ResponseVo<>(true);
 	}
 
 }

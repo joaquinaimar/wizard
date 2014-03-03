@@ -20,7 +20,7 @@
 
 		<!-- dependency -->
 		<junit.version>4.10</junit.version>
-		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
+		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
 		<org.apache.cxf.version>2.5.9</org.apache.cxf.version>
 		<org.apache.cxf.transports.common.version>2.5.9</org.apache.cxf.transports.common.version>
 		<slf4j.version>1.6.1</slf4j.version>
@@ -95,7 +95,6 @@
 			<artifactId>cxf-rt-transports-common</artifactId>
 			<version>${org.apache.cxf.transports.common.version}</version>
 		</dependency>
-
 
 		<!-- LOG -->
 		<dependency>

@@ -63,6 +63,16 @@ $(document).ready(function() {
 		});
 	});
 
+	$("#btnBatchUpdate").bind("click", function() {
+		Wizard.ajaxSubmit("#frmBatchUpdate", {
+			dataType : "json",
+			timeout : 100000000,
+			loadstr : "正在上传，请稍候",
+			success : function(responseText, statusText, xhr) {
+				Wizard.alertSuccess("成功", "上传成功！");
+			}
+		});
+	});
 });
 
 var searchCodeType = function(pars) {

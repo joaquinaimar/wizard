@@ -1,0 +1,59 @@
+﻿<ex:PageExpand x:Class="Wizard.Wpf.Program.Application.SysManage.View.UserManagePageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ex="clr-namespace:Wizard.Wpf.Program.Basic.Framework.Expand"
+      xmlns:ph="clr-namespace:Wizard.Wpf.Program.Basic.UI.Password"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" Title="用户管理">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="修改密码" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="原密码：" Style="{StaticResource LabelFor}" Grid.Row="0" Grid.Column="0" />
+                    <PasswordBox ph:PasswordBoxHelper.Attach="True" ph:PasswordBoxHelper.Password="{Binding ViewEntity.OldPassword,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource PasswordBox}" Grid.Row="0" Grid.Column="1" />
+
+                    <Label Content="新密码：" Style="{StaticResource LabelFor}" Grid.Row="1" Grid.Column="0" />
+                    <PasswordBox ph:PasswordBoxHelper.Attach="True" ph:PasswordBoxHelper.Password="{Binding ViewEntity.NewPassword,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource PasswordBox}" Grid.Row="1" Grid.Column="1" />
+
+                    <Label Content="新密码：" Style="{StaticResource LabelFor}" Grid.Row="2" Grid.Column="0" />
+                    <PasswordBox ph:PasswordBoxHelper.Attach="True" ph:PasswordBoxHelper.Password="{Binding ViewEntity.ConfirmPassword,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource PasswordBox}" Grid.Row="2" Grid.Column="1" />
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Content="修改" Command="{Binding BtnModifyCommand}" Style="{StaticResource Button}" Grid.Column="0" />
+                </Grid>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</ex:PageExpand>

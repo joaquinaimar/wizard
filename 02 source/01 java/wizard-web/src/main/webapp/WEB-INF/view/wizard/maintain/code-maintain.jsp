@@ -1,29 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <div class="container">
 	<div class="row form-row">
-		<div class="col-md-3 input-group">
-			<span class="input-group-addon">内容</span> <input type="text"
-				id="txtSearchContent" class="form-control" />
+		<div class="col-md-3">
+			<div class="input-group">
+				<span class="input-group-addon">内容</span> <input type="text"
+					id="txtSearchContent" class="form-control" />
+			</div>
 		</div>
-		<div class="row form-row">
-			<div class="col-md-3 btn-group">
+		<div class="col-md-3">
+			<div class="btn-group">
 				<input type="button" id="btnSearch" class="btn btn-primary"
 					value="查询" /> <input type="button" id="btnInsertType"
 					class="btn btn-primary" value="新建" /> <input type="button"
 					id="btnDeleteType" class="btn btn-primary" value="删除" />
 			</div>
-			<div class="col-md-3 btn-group">
+		</div>
+	</div>
+	<div class="row form-row">
+		<div class="col-md-4">
+			<form id="frmBatchUpdate"
+				action="${pageContext.request.contextPath}/wizard/maintain/code-maintain/batchUpdate.do"
+				method="POST" enctype="multipart/form-data">
+				<input type="file" id="fileExcelFile" name="fileExcelFile" class="form-control" />
+			</form>
+		</div>
+		<div class="col-md-3">
+			<div class="btn-group">
 				<input type="button" id="btnBatchUpdate" class="btn btn-primary"
 					value="批量更新" /> <input type="button" id="btnExport"
 					class="btn btn-primary" value="导出" />
 			</div>
 		</div>
-		<div class="row">
-			<table id="code-type"
-				class="table table-striped table-bordered table-hover">
-			</table>
-		</div>
 	</div>
+	<div class="row form-row">
+		<table id="code-type"
+			class="table table-striped table-bordered table-hover">
+		</table>
+	</div>
+
 </div>
 <div class="modal fade" id="codeListModal" tabindex="-1" role="dialog"
 	aria-labelledby="codeList" aria-hidden="true">

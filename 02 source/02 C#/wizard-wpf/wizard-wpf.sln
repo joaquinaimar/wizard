@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wizard-wpf", "wizard-wpf\wizard-wpf.csproj", "{18668BA1-556F-4598-82F7-C9395D34A41A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wizard-model", "wizard-model\wizard-model.csproj", "{B382392F-8A33-4F62-A229-E54ABCAA1563}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuPackage", "NuPackage\NuPackage.csproj", "{17CAD0AB-A84D-434C-9FB3-96D179531E32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18668BA1-556F-4598-82F7-C9395D34A41A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18668BA1-556F-4598-82F7-C9395D34A41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18668BA1-556F-4598-82F7-C9395D34A41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18668BA1-556F-4598-82F7-C9395D34A41A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B382392F-8A33-4F62-A229-E54ABCAA1563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B382392F-8A33-4F62-A229-E54ABCAA1563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B382392F-8A33-4F62-A229-E54ABCAA1563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B382392F-8A33-4F62-A229-E54ABCAA1563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17CAD0AB-A84D-434C-9FB3-96D179531E32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CAD0AB-A84D-434C-9FB3-96D179531E32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CAD0AB-A84D-434C-9FB3-96D179531E32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CAD0AB-A84D-434C-9FB3-96D179531E32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

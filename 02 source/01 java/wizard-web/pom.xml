@@ -50,7 +50,6 @@
 		<jquery.version>2.0.3-1</jquery.version>
 		<jquery-ui.version>1.10.3</jquery-ui.version>
 		<jquery-form.version>3.28.0-2013.02.06-1</jquery-form.version>
-		<jquery-file-upload.version>9.5.4</jquery-file-upload.version>
 		<datatables.version>1.9.4-2</datatables.version>
 		<highcharts.version>3.0.7</highcharts.version>
 
@@ -338,11 +337,6 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery-form</artifactId>
 			<version>${jquery-form.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery-file-upload</artifactId>
-			<version>${jquery-file-upload.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>

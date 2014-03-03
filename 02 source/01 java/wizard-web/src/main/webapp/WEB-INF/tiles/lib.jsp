@@ -14,6 +14,11 @@
 <!-- jquery-ui -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/webjars/jquery-ui/themes/base/minified/jquery-ui.min.css" />
+<!-- jquery-file-upload -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/webjars/jquery-file-upload/css/jquery.fileupload.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/webjars/jquery-file-upload/css/jquery.fileupload-ui.css" />
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/webjars/bootstrap/css/bootstrap-theme.min.css" />
@@ -42,6 +47,11 @@
 <!-- jquery-ui -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/webjars/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<!-- jquery-file-upload -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/webjars/jquery-file-upload/js/jquery.fileupload.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/webjars/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
 <!-- jquery-form -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/webjars/jquery-form/jquery.form.js"></script>
