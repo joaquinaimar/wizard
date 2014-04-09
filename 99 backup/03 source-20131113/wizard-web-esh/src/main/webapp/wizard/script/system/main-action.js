@@ -1,8 +1,7 @@
 function getFirstPage() {
 
 	Ext.Ajax.request({
-		url : contextPath
-				+ '/wizardframework/MenuManage/getFirstPage.do',
+		url : contextPath + '/wizardframework/MenuManage/getFirstPage.do',
 		method : 'GET',
 		success : function(response, options) {
 			var firstPage = Ext.JSON.decode(response.responseText).message;
@@ -20,17 +19,15 @@ function logout(flg) {
 
 	Ext.Msg.confirm("提示", "确定要退出吗？", function(btn) {
 		if ("yes" == btn) {
-			Ext.Ajax
-					.request({
-						url : contextPath
-								+ '/wizardframework/Main/logout.do',
-						method : 'POST',
-						success : function(response, options) {
-							if (flg) {
-								window.location.href = contextPath;
-							}
-						}
-					})
+			Ext.Ajax.request({
+				url : contextPath + '/wizardframework/Main/logout.do',
+				method : 'POST',
+				success : function(response, options) {
+					if (flg) {
+						window.location.href = contextPath;
+					}
+				}
+			});
 		}
 		return;
 	}, this);
