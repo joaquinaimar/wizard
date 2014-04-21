@@ -22,6 +22,7 @@
 		<jsp-api.version>2.2</jsp-api.version>
 		<jstl.version>1.2</jstl.version>
 		<commons-io.version>1.3.2</commons-io.version>
+		<commons-logging.version>1.1.1</commons-logging.version>
 		<commons-lang.version>2.5</commons-lang.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<commons-fileupload.version>1.2.2</commons-fileupload.version>
@@ -33,8 +34,6 @@
 		<hibernate-commons-annotations.version>4.0.1.Final</hibernate-commons-annotations.version>
 		<hibernate-entitymanager.version>4.1.9.Final</hibernate-entitymanager.version>
 		<shiro.version>1.2.1</shiro.version>
-		<slf4j.version>1.6.1</slf4j.version>
-		<log4j.version>1.2.16</log4j.version>
 
 		<!-- build -->
 		<java.version>1.7</java.version>
@@ -90,6 +89,11 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -213,22 +217,6 @@
 			<version>${shiro.version}</version>
 		</dependency>
 
-		<!-- LOG -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
