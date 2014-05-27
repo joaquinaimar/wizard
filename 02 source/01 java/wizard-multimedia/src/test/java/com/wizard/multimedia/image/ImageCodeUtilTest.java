@@ -9,6 +9,8 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import com.wizard.multimedia.image.support.ImageType;
+
 public class ImageCodeUtilTest {
 
 	@Test
@@ -32,4 +34,25 @@ public class ImageCodeUtilTest {
 			Assert.fail();
 		}
 	}
+
+	@Test
+	public void testPdfToImage01() {
+		try {
+			ImageCodeUtil.convertPdfToImage(new File("D:\\pdf\\python.pdf"),
+					"D:\\pdf\\tif\\", ImageType.TYPE_TIFF);
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
+
+	@Test
+	public void testPdfToImage02() {
+		try {
+			ImageCodeUtil.convertPdfToImage(new File("D:\\pdf\\python.pdf"),
+					"D:\\pdf\\jpg\\", ImageType.TYPE_JPEG);
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
+
 }
