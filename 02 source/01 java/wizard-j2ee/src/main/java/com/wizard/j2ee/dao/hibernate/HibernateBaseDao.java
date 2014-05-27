@@ -1,6 +1,8 @@
 package com.wizard.j2ee.dao.hibernate;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.hibernate.Criteria;
@@ -124,7 +126,27 @@ public class HibernateBaseDao {
 		count.setFirstResult(0);
 		count.setMaxResults(0);
 		count.setProjection(Projections.rowCount());
-		return (long) count.uniqueResult();
+		clearOrderBy(count);
+		return (Long) count.uniqueResult();
+	}
+
+	private void clearOrderBy(Criteria criteria) {
+		try {
+			Field order = criteria.getClass().getDeclaredField("parent");
+			order.setAccessible(true);
+			clearOrderBy((Criteria) order.get(criteria));
+		} catch (NoSuchFieldException e) {
+			try {
+				Field order = criteria.getClass().getDeclaredField(
+						"orderEntries");
+				order.setAccessible(true);
+				order.set(criteria, new ArrayList());
+			} catch (Exception ex) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public PageResponse pageQuery(Query query, PageRequest request) {
@@ -154,9 +176,10 @@ public class HibernateBaseDao {
 		int fromIndex = queryString.toLowerCase().indexOf("from");
 		String countString = "SELECT COUNT(*) AS CNT "
 				+ queryString.substring(fromIndex);
-		Query countQuery = createQuery(countString);
+		int orderIndex = countString.toLowerCase().lastIndexOf("order");
+		Query countQuery = createQuery(countString.substring(0, orderIndex));
 		countQuery.setProperties(obj);
-		return (long) countQuery.uniqueResult();
+		return (Long) countQuery.uniqueResult();
 	}
 
 	public PageResponse pageQuery(Query query, Map<String, Object> bean,
@@ -178,9 +201,10 @@ public class HibernateBaseDao {
 		int fromIndex = queryString.toLowerCase().indexOf("from");
 		String countString = "SELECT COUNT(*) AS CNT "
 				+ queryString.substring(fromIndex);
-		Query countQuery = createQuery(countString);
+		int orderIndex = countString.toLowerCase().lastIndexOf("order");
+		Query countQuery = createQuery(countString.substring(0, orderIndex));
 		countQuery.setProperties(bean);
-		return (long) countQuery.uniqueResult();
+		return (Long) countQuery.uniqueResult();
 	}
 
 	private void setOrderBy(Query query, PageRequest request) {
@@ -195,21 +219,6 @@ public class HibernateBaseDao {
 			queryString.substring(0, queryString.length() - 2);
 			query = createQuery(queryString);
 
-		}
-	}
-
-	public String createInStr(String propertie, Object[] objs) {
-		if (null != objs && 0 != objs.length) {
-			StringBuffer sb = new StringBuffer(propertie);
-			sb.append(" IN ( ");
-			for (Object obj : objs) {
-				sb.append(", ");
-				sb.append(obj);
-			}
-			sb.append(" )");
-			return sb.toString().replaceFirst(", ", "");
-		} else {
-			return "1 = 1";
 		}
 	}
 
