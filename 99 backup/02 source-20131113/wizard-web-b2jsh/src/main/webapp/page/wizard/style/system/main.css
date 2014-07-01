@@ -1,0 +1,144 @@
+body {
+	overflow: hidden;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#main-head {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+}
+
+#title-userinfo {
+	position: absolute;
+	right: 20px;
+	width: 300px;
+	height: 20px;
+}
+
+#title-svg {
+	position: absolute;
+	top:20px;
+	width: 100%;
+	height: 50px;
+}
+
+#main {
+	position: absolute;
+	top: 80px;
+	right: 0;
+	bottom: 60px;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+#main-foot {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	text-align: center;
+}
+
+#main-menu {
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 170px;
+	text-align: center;
+}
+
+#menu {
+	overflow: auto;
+	width: 95%;
+	height: 90%;
+}
+
+#main-main {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 180px;
+	overflow: auto;
+}
+
+#tab-body {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 40px;
+	bottom: 0;
+}
+
+.body-pane {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.frame-style {
+	height: 99%;
+	width: 100%;
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+.menu-first {
+	height: 45px;
+	line-height: 45px;
+	background-color: #e9e9e9;
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #e1e1e1;
+	padding: 0;
+	font-size: 14px;
+	font-weight: normal;
+	text-align: center;
+}
+
+.menu-first:hover {
+	text-decoration: none;
+	background-color: #d6d4d5;
+	border-top: 1px solid #b7b7b7;
+	border-bottom: 1px solid #acacac;
+}
+
+.menu-second li a {
+	background-color: #f6f6f6;
+	height: 31px;
+	line-height: 31px;
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #efefef;
+	font-size: 12px;
+	text-align: center;
+}
+
+.menu-second li a:hover {
+	text-decoration: none;
+	background-color: #66c3ec;
+	border-top: 1px solid #83ceed;
+	border-bottom: 1px solid #83ceed;
+	border-right: 3px solid #f8881c;
+	border-left: 3px solid #66c3ec;
+}
+
+.menu-second-selected {
+	background-color: #66c3ec;
+	height: 31px;
+	line-height: 31px;
+	border-top: 1px solid #83ceed;
+	border-bottom: 1px solid #83ceed;
+	border-right: 3px solid #f8881c;
+	border-left: 3px solid #66c3ec;
+	text-align: center;
+}
